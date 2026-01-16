@@ -1,0 +1,238 @@
+{
+  "categories": [
+    { "id": "cement", "name": "Cement & Binders", "icon": "🏗️" },
+    { "id": "aggregates", "name": "Aggregates", "icon": "🪨" },
+    { "id": "steel", "name": "Steel & Rebar", "icon": "🔩" },
+    { "id": "lumber", "name": "Lumber", "icon": "🪵" },
+    { "id": "roofing", "name": "Roofing", "icon": "🏠" },
+    { "id": "masonry", "name": "Masonry", "icon": "🧱" },
+    { "id": "plumbing", "name": "Plumbing", "icon": "🚿" },
+    { "id": "electrical", "name": "Electrical", "icon": "⚡" }
+  ],
+  "materials": [
+    {
+      "id": "cement-portland-40kg",
+      "name": "Portland Cement",
+      "unit": "bag (40kg)",
+      "category": "cement",
+      "prices": {
+        "low": 280,
+        "typical": 295,
+        "high": 320
+      },
+      "sources": ["Newtown Hardware", "Apex Construction Supply"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Standard Type 1. Holiday markup may apply Dec-Jan."
+    },
+    {
+      "id": "sand-washed-cum",
+      "name": "Washed Sand",
+      "unit": "cu.m.",
+      "category": "aggregates",
+      "prices": {
+        "low": 1600,
+        "typical": 1800,
+        "high": 2100
+      },
+      "sources": ["Various truckers"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Price includes delivery within Baguio proper."
+    },
+    {
+      "id": "gravel-34-cum",
+      "name": "Gravel 3/4\"",
+      "unit": "cu.m.",
+      "category": "aggregates",
+      "prices": {
+        "low": 2000,
+        "typical": 2200,
+        "high": 2500
+      },
+      "sources": ["Various truckers"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Price includes delivery within Baguio proper."
+    },
+    {
+      "id": "rebar-10mm",
+      "name": "Deformed Bar 10mm",
+      "unit": "pc (6m)",
+      "category": "steel",
+      "prices": {
+        "low": 165,
+        "typical": 180,
+        "high": 200
+      },
+      "sources": ["Apex", "Newtown Hardware"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Grade 40. Bulk orders may get 5% discount."
+    },
+    {
+      "id": "rebar-12mm",
+      "name": "Deformed Bar 12mm",
+      "unit": "pc (6m)",
+      "category": "steel",
+      "prices": {
+        "low": 240,
+        "typical": 260,
+        "high": 290
+      },
+      "sources": ["Apex", "Newtown Hardware"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Grade 40. Bulk orders may get 5% discount."
+    },
+    {
+      "id": "rebar-16mm",
+      "name": "Deformed Bar 16mm",
+      "unit": "pc (6m)",
+      "category": "steel",
+      "prices": {
+        "low": 420,
+        "typical": 450,
+        "high": 490
+      },
+      "sources": ["Apex", "Newtown Hardware"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Grade 40. Check stock availability."
+    },
+    {
+      "id": "lumber-coco-2x3x12",
+      "name": "Coco Lumber 2x3x12",
+      "unit": "pc",
+      "category": "lumber",
+      "prices": {
+        "low": 75,
+        "typical": 85,
+        "high": 100
+      },
+      "sources": ["Session Lumber", "Various"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Quality varies. Inspect before buying."
+    },
+    {
+      "id": "lumber-good-2x4x12",
+      "name": "Good Lumber 2x4x12",
+      "unit": "bd.ft.",
+      "category": "lumber",
+      "prices": {
+        "low": 48,
+        "typical": 55,
+        "high": 65
+      },
+      "sources": ["Session Lumber"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Kiln dried preferred for finish work."
+    },
+    {
+      "id": "gi-sheet-04mm",
+      "name": "GI Sheet 0.4mm",
+      "unit": "pc (8ft)",
+      "category": "roofing",
+      "prices": {
+        "low": 350,
+        "typical": 380,
+        "high": 420
+      },
+      "sources": ["Newtown Hardware", "Various"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Corrugated, plain gauge 26."
+    },
+    {
+      "id": "gi-sheet-05mm",
+      "name": "GI Sheet 0.5mm",
+      "unit": "pc (8ft)",
+      "category": "roofing",
+      "prices": {
+        "low": 420,
+        "typical": 460,
+        "high": 500
+      },
+      "sources": ["Newtown Hardware", "Various"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Corrugated, plain gauge 24."
+    },
+    {
+      "id": "chb-4inch",
+      "name": "Hollow Block 4\"",
+      "unit": "pc",
+      "category": "masonry",
+      "prices": {
+        "low": 12,
+        "typical": 14,
+        "high": 16
+      },
+      "sources": ["Local CHB makers"],
+      "lastUpdated": "2026-01-15",
+      "notes": "40x20x10cm. Quality varies by maker."
+    },
+    {
+      "id": "chb-6inch",
+      "name": "Hollow Block 6\"",
+      "unit": "pc",
+      "category": "masonry",
+      "prices": {
+        "low": 18,
+        "typical": 20,
+        "high": 24
+      },
+      "sources": ["Local CHB makers"],
+      "lastUpdated": "2026-01-15",
+      "notes": "40x20x15cm. Preferred for load-bearing walls."
+    },
+    {
+      "id": "pvc-4in-s1000",
+      "name": "PVC Pipe 4\" S1000",
+      "unit": "pc (10ft)",
+      "category": "plumbing",
+      "prices": {
+        "low": 290,
+        "typical": 320,
+        "high": 360
+      },
+      "sources": ["Atlanta Hardware", "Newtown"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Orange, for sewage/drainage."
+    },
+    {
+      "id": "pvc-half-blue",
+      "name": "PVC Pipe 1/2\" Blue",
+      "unit": "pc (10ft)",
+      "category": "plumbing",
+      "prices": {
+        "low": 55,
+        "typical": 65,
+        "high": 75
+      },
+      "sources": ["Atlanta Hardware", "Newtown"],
+      "lastUpdated": "2026-01-15",
+      "notes": "For water supply lines."
+    },
+    {
+      "id": "thhn-12",
+      "name": "THHN Wire #12",
+      "unit": "meter",
+      "category": "electrical",
+      "prices": {
+        "low": 28,
+        "typical": 32,
+        "high": 38
+      },
+      "sources": ["Newtown Hardware", "CDR King"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Stranded, 3.5mm². Check for PSI mark."
+    },
+    {
+      "id": "thhn-14",
+      "name": "THHN Wire #14",
+      "unit": "meter",
+      "category": "electrical",
+      "prices": {
+        "low": 18,
+        "typical": 22,
+        "high": 26
+      },
+      "sources": ["Newtown Hardware", "CDR King"],
+      "lastUpdated": "2026-01-15",
+      "notes": "Stranded, 2.0mm². For lighting circuits."
+    }
+  ]
+}
