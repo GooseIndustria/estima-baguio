@@ -16,9 +16,12 @@ export function EstimateSummary() {
         }
     }, [lineItems, totals]);
 
-    if (lineItems.length === 0) {
-        return null;
-    }
+    // Always show summary so user sees running total at bottom
+    // if (lineItems.length === 0) {
+    //     return null;
+    // }
+
+    const isEmpty = lineItems.length === 0;
 
     return (
         <>
@@ -61,10 +64,20 @@ export function EstimateSummary() {
 
                     {/* Actions */}
                     <div className="summary-actions">
-                        <button className="btn btn-secondary" onClick={clearEstimate}>
+                        <button
+                            className="btn btn-secondary"
+                            onClick={clearEstimate}
+                            disabled={isEmpty}
+                            style={{ opacity: isEmpty ? 0.5 : 1 }}
+                        >
                             Clear
                         </button>
-                        <button className="btn btn-primary" onClick={handleCopy}>
+                        <button
+                            className="btn btn-primary"
+                            onClick={handleCopy}
+                            disabled={isEmpty}
+                            style={{ opacity: isEmpty ? 0.5 : 1 }}
+                        >
                             📋 Copy Estimate
                         </button>
                     </div>
