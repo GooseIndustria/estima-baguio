@@ -30,24 +30,30 @@ async function initDB() {
     });
 }
 
-// Check if seed data needs to be loaded
+// Sync seed data - adds new materials, preserves user edits
 async function seedDatabase(db) {
-    const count = await db.count('materials');
-    if (count === 0) {
-        // Load seed data
-        const tx = db.transaction(['materials', 'categories'], 'readwrite');
+    const tx = db.transaction(['materials', 'categories'], 'readwrite');
+    const materialsStore = tx.objectStore('materials');
+    const categoriesStore = tx.objectStore('categories');
 
-        for (const material of seedData.materials) {
-            await tx.objectStore('materials').put(material);
-        }
-
-        for (const category of seedData.categories) {
-            await tx.objectStore('categories').put(category);
-        }
-
-        await tx.done;
-        console.log('Seed data loaded successfully');
+    // Always update categories
+    for (const category of seedData.categories) {
+        await categoriesStore.put(category);
     }
+
+    // For materials: add if not exists, preserve if user has edited
+    for (const material of seedData.materials) {
+        const existing = await materialsStore.get(material.id);
+
+        if (!existing) {
+            // New material - add it
+            await materialsStore.put(material);
+        }
+        // If exists, keep user's version (they may have updated prices)
+    }
+
+    await tx.done;
+    console.log('Seed data synced');
 }
 
 // Hook for IndexedDB operations
