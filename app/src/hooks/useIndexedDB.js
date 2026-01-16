@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import seedData from '../data/materials.json';
 
 const DB_NAME = 'estima-baguio';
-const DB_VERSION = 1;
+const DB_VERSION = 2; // Bumped to force resync of all materials
 
 // Initialize the database
 async function initDB() {
