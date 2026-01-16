@@ -5,31 +5,40 @@
 
 /* CSS Custom Properties */
 :root {
-    /* Colors - Dark theme (primary) */
-    --color-bg-primary: #0f0f1a;
-    --color-bg-secondary: #1a1a2e;
-    --color-bg-card: #252542;
-    --color-bg-input: #1e1e35;
+    /* Colors - Baguio 'Pine & Mist' theme */
+    --color-bg-primary: #081c15;
+    /* Deep Forest */
+    --color-bg-secondary: #0d2818;
+    /* Dark Pine */
+    --color-bg-card: #1b4332;
+    /* Pine Needle */
+    --color-bg-input: #081c15;
 
-    --color-text-primary: #f5f5f7;
-    --color-text-secondary: #a0a0b0;
-    --color-text-muted: #6b6b80;
+    --color-text-primary: #f1f5f9;
+    /* Mist White */
+    --color-text-secondary: #cbd5e1;
+    /* Fog Grey */
+    --color-text-muted: #64748b;
 
-    --color-accent: #6366f1;
-    --color-accent-hover: #818cf8;
-    --color-accent-glow: rgba(99, 102, 241, 0.3);
+    --color-accent: #facc15;
+    /* Sunflower Yellow */
+    --color-accent-hover: #eab308;
+    /* Panagbenga Gold */
+    --color-accent-glow: rgba(250, 204, 21, 0.2);
 
-    --color-success: #22c55e;
-    --color-warning: #f59e0b;
+    --color-success: #2d6a4f;
+    /* Lush Leaf Green */
+    --color-warning: #fb923c;
+    /* Sunset Orange */
     --color-error: #ef4444;
 
-    --color-border: #2e2e4a;
-    --color-border-focus: #6366f1;
+    --color-border: #2d6a4f;
+    --color-border-focus: #facc15;
 
     /* Price range colors */
-    --color-price-low: #22c55e;
-    --color-price-typical: #6366f1;
-    --color-price-high: #f59e0b;
+    --color-price-low: #40916c;
+    --color-price-typical: #facc15;
+    --color-price-high: #fb923c;
 
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
