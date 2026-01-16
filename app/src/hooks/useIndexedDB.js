@@ -8,7 +8,7 @@ const DB_VERSION = 2; // Bumped to force resync of all materials
 // Initialize the database
 async function initDB() {
     return openDB(DB_NAME, DB_VERSION, {
-        upgrade(db) {
+        upgrade(db, oldVersion, newVersion, transaction) {
             // Materials store
             if (!db.objectStoreNames.contains('materials')) {
                 const materialStore = db.createObjectStore('materials', { keyPath: 'id' });
@@ -25,6 +25,15 @@ async function initDB() {
             if (!db.objectStoreNames.contains('estimates')) {
                 const estimateStore = db.createObjectStore('estimates', { keyPath: 'id' });
                 estimateStore.createIndex('createdAt', 'createdAt');
+            }
+
+            // If upgrading from v1 to v2, clear materials to force full reseed
+            if (oldVersion === 1 && newVersion === 2) {
+                const materialsStore = transaction.objectStore('materials');
+                materialsStore.clear();
+                const categoriesStore = transaction.objectStore('categories');
+                categoriesStore.clear();
+                console.log('Cleared old materials for v2 resync');
             }
         },
     });
