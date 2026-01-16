@@ -1,13 +1,45 @@
 {
   "categories": [
-    { "id": "cement", "name": "Cement & Binders", "icon": "🏗️" },
-    { "id": "aggregates", "name": "Aggregates", "icon": "🪨" },
-    { "id": "steel", "name": "Steel & Rebar", "icon": "🔩" },
-    { "id": "lumber", "name": "Lumber", "icon": "🪵" },
-    { "id": "roofing", "name": "Roofing", "icon": "🏠" },
-    { "id": "masonry", "name": "Masonry", "icon": "🧱" },
-    { "id": "plumbing", "name": "Plumbing", "icon": "🚿" },
-    { "id": "electrical", "name": "Electrical", "icon": "⚡" }
+    {
+      "id": "cement",
+      "name": "Cement & Binders",
+      "icon": "🏗️"
+    },
+    {
+      "id": "aggregates",
+      "name": "Aggregates",
+      "icon": "🪨"
+    },
+    {
+      "id": "steel",
+      "name": "Steel & Rebar",
+      "icon": "🔩"
+    },
+    {
+      "id": "lumber",
+      "name": "Lumber",
+      "icon": "🪵"
+    },
+    {
+      "id": "roofing",
+      "name": "Roofing",
+      "icon": "🏠"
+    },
+    {
+      "id": "masonry",
+      "name": "Masonry",
+      "icon": "🧱"
+    },
+    {
+      "id": "plumbing",
+      "name": "Plumbing",
+      "icon": "🚿"
+    },
+    {
+      "id": "electrical",
+      "name": "Electrical",
+      "icon": "⚡"
+    }
   ],
   "materials": [
     {
@@ -20,7 +52,10 @@
         "typical": 295,
         "high": 320
       },
-      "sources": ["Newtown Hardware", "Apex Construction Supply"],
+      "sources": [
+        "Newtown Hardware",
+        "Apex Construction Supply"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Standard Type 1. Holiday markup may apply Dec-Jan."
     },
@@ -34,7 +69,9 @@
         "typical": 1800,
         "high": 2100
       },
-      "sources": ["Various truckers"],
+      "sources": [
+        "Various truckers"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Price includes delivery within Baguio proper."
     },
@@ -48,7 +85,9 @@
         "typical": 2200,
         "high": 2500
       },
-      "sources": ["Various truckers"],
+      "sources": [
+        "Various truckers"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Price includes delivery within Baguio proper."
     },
@@ -62,7 +101,10 @@
         "typical": 180,
         "high": 200
       },
-      "sources": ["Apex", "Newtown Hardware"],
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Grade 40. Bulk orders may get 5% discount."
     },
@@ -76,7 +118,10 @@
         "typical": 260,
         "high": 290
       },
-      "sources": ["Apex", "Newtown Hardware"],
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Grade 40. Bulk orders may get 5% discount."
     },
@@ -90,7 +135,10 @@
         "typical": 450,
         "high": 490
       },
-      "sources": ["Apex", "Newtown Hardware"],
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Grade 40. Check stock availability."
     },
@@ -104,7 +152,10 @@
         "typical": 85,
         "high": 100
       },
-      "sources": ["Session Lumber", "Various"],
+      "sources": [
+        "Session Lumber",
+        "Various"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Quality varies. Inspect before buying."
     },
@@ -118,7 +169,9 @@
         "typical": 55,
         "high": 65
       },
-      "sources": ["Session Lumber"],
+      "sources": [
+        "Session Lumber"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Kiln dried preferred for finish work."
     },
@@ -132,7 +185,10 @@
         "typical": 380,
         "high": 420
       },
-      "sources": ["Newtown Hardware", "Various"],
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Corrugated, plain gauge 26."
     },
@@ -146,7 +202,10 @@
         "typical": 460,
         "high": 500
       },
-      "sources": ["Newtown Hardware", "Various"],
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Corrugated, plain gauge 24."
     },
@@ -160,7 +219,9 @@
         "typical": 14,
         "high": 16
       },
-      "sources": ["Local CHB makers"],
+      "sources": [
+        "Local CHB makers"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "40x20x10cm. Quality varies by maker."
     },
@@ -174,7 +235,9 @@
         "typical": 20,
         "high": 24
       },
-      "sources": ["Local CHB makers"],
+      "sources": [
+        "Local CHB makers"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "40x20x15cm. Preferred for load-bearing walls."
     },
@@ -188,7 +251,10 @@
         "typical": 320,
         "high": 360
       },
-      "sources": ["Atlanta Hardware", "Newtown"],
+      "sources": [
+        "Atlanta Hardware",
+        "Newtown"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Orange, for sewage/drainage."
     },
@@ -202,7 +268,10 @@
         "typical": 65,
         "high": 75
       },
-      "sources": ["Atlanta Hardware", "Newtown"],
+      "sources": [
+        "Atlanta Hardware",
+        "Newtown"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "For water supply lines."
     },
@@ -216,7 +285,10 @@
         "typical": 32,
         "high": 38
       },
-      "sources": ["Newtown Hardware", "CDR King"],
+      "sources": [
+        "Newtown Hardware",
+        "CDR King"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Stranded, 3.5mm². Check for PSI mark."
     },
@@ -230,9 +302,182 @@
         "typical": 22,
         "high": 26
       },
-      "sources": ["Newtown Hardware", "CDR King"],
+      "sources": [
+        "Newtown Hardware",
+        "CDR King"
+      ],
       "lastUpdated": "2026-01-15",
       "notes": "Stranded, 2.0mm². For lighting circuits."
+    },
+    {
+      "id": "tie-wire-16",
+      "name": "Tie Wire #16",
+      "unit": "kg",
+      "category": "steel",
+      "prices": {
+        "low": 75,
+        "typical": 85,
+        "high": 95
+      },
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For tying rebars. ~80m per kg."
+    },
+    {
+      "id": "rebar-8mm",
+      "name": "Deformed Bar 8mm",
+      "unit": "pc (6m)",
+      "category": "steel",
+      "prices": {
+        "low": 95,
+        "typical": 110,
+        "high": 125
+      },
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Grade 40. For stirrups and light reinforcement."
+    },
+    {
+      "id": "plywood-marine-half",
+      "name": "Marine Plywood 1/2\"",
+      "unit": "pc (4x8)",
+      "category": "lumber",
+      "prices": {
+        "low": 850,
+        "typical": 950,
+        "high": 1100
+      },
+      "sources": [
+        "Session Lumber",
+        "Newtown"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Water-resistant. For formwork and exterior use."
+    },
+    {
+      "id": "plywood-ordinary-quarter",
+      "name": "Ordinary Plywood 1/4\"",
+      "unit": "pc (4x8)",
+      "category": "lumber",
+      "prices": {
+        "low": 380,
+        "typical": 420,
+        "high": 480
+      },
+      "sources": [
+        "Session Lumber",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For ceilings, partitions, interior use."
+    },
+    {
+      "id": "cwn-3inch",
+      "name": "Common Wire Nail 3\"",
+      "unit": "kg",
+      "category": "steel",
+      "prices": {
+        "low": 75,
+        "typical": 85,
+        "high": 95
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For framing and general carpentry."
+    },
+    {
+      "id": "cwn-2inch",
+      "name": "Common Wire Nail 2\"",
+      "unit": "kg",
+      "category": "steel",
+      "prices": {
+        "low": 78,
+        "typical": 88,
+        "high": 100
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For lighter carpentry and finishing."
+    },
+    {
+      "id": "wire-mesh-6x6",
+      "name": "Wire Mesh 6x6 10/10",
+      "unit": "sheet",
+      "category": "steel",
+      "prices": {
+        "low": 1800,
+        "typical": 2000,
+        "high": 2300
+      },
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For slab reinforcement. Standard 1.2m x 2.4m."
+    },
+    {
+      "id": "angle-bar-1x1",
+      "name": "Angle Bar 1\" x 1\" x 6m",
+      "unit": "pc",
+      "category": "steel",
+      "prices": {
+        "low": 380,
+        "typical": 420,
+        "high": 480
+      },
+      "sources": [
+        "Apex",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Mild steel. For lintels, frames, supports."
+    },
+    {
+      "id": "gi-pipe-1inch",
+      "name": "G.I. Pipe 1\" S40",
+      "unit": "pc (6m)",
+      "category": "plumbing",
+      "prices": {
+        "low": 650,
+        "typical": 720,
+        "high": 800
+      },
+      "sources": [
+        "Atlanta Hardware",
+        "Newtown"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Schedule 40. For water lines or structural."
+    },
+    {
+      "id": "form-oil",
+      "name": "Form Oil / Diesel Mix",
+      "unit": "liter",
+      "category": "cement",
+      "prices": {
+        "low": 55,
+        "typical": 65,
+        "high": 75
+      },
+      "sources": [
+        "Hardware stores",
+        "Gas stations"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For coating formwork before concrete pour."
     }
   ]
 }
