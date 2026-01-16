@@ -478,6 +478,329 @@
       ],
       "lastUpdated": "2026-01-16",
       "notes": "For coating formwork before concrete pour."
+    },
+    {
+      "id": "rebar-20mm",
+      "name": "Deformed Bar 20mm",
+      "unit": "pc (6m)",
+      "category": "steel",
+      "prices": {
+        "low": 680,
+        "typical": 750,
+        "high": 850
+      },
+      "sources": [
+        "Apex",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Grade 40. For heavy columns and beams."
+    },
+    {
+      "id": "c-purlins-2x3",
+      "name": "C-Purlins 2\" x 3\" x 6m",
+      "unit": "pc",
+      "category": "steel",
+      "prices": {
+        "low": 420,
+        "typical": 480,
+        "high": 550
+      },
+      "sources": [
+        "Apex",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Light gauge steel. For roof framing."
+    },
+    {
+      "id": "c-purlins-2x4",
+      "name": "C-Purlins 2\" x 4\" x 6m",
+      "unit": "pc",
+      "category": "steel",
+      "prices": {
+        "low": 520,
+        "typical": 580,
+        "high": 650
+      },
+      "sources": [
+        "Apex",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Light gauge steel. For longer roof spans."
+    },
+    {
+      "id": "flat-bar-1x8",
+      "name": "Flat Bar 1/8\" x 1\" x 6m",
+      "unit": "pc",
+      "category": "steel",
+      "prices": {
+        "low": 180,
+        "typical": 210,
+        "high": 250
+      },
+      "sources": [
+        "Apex",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Mild steel. For bracing and misc fabrication."
+    },
+    {
+      "id": "latex-paint-white",
+      "name": "Latex Paint White",
+      "unit": "gallon",
+      "category": "cement",
+      "prices": {
+        "low": 450,
+        "typical": 550,
+        "high": 700
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Paint shops"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Economy grade. For interior walls."
+    },
+    {
+      "id": "primer-paint",
+      "name": "Concrete Primer/Neutralizer",
+      "unit": "gallon",
+      "category": "cement",
+      "prices": {
+        "low": 380,
+        "typical": 450,
+        "high": 550
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Paint shops"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Apply before topcoat on new concrete."
+    },
+    {
+      "id": "tile-ceramic-floor",
+      "name": "Ceramic Floor Tile 40x40",
+      "unit": "pc",
+      "category": "masonry",
+      "prices": {
+        "low": 28,
+        "typical": 38,
+        "high": 55
+      },
+      "sources": [
+        "Wilcon",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Economy grade. ~6.25 pcs per sqm."
+    },
+    {
+      "id": "tile-ceramic-wall",
+      "name": "Ceramic Wall Tile 20x30",
+      "unit": "pc",
+      "category": "masonry",
+      "prices": {
+        "low": 18,
+        "typical": 25,
+        "high": 35
+      },
+      "sources": [
+        "Wilcon",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For bathroom/kitchen walls. ~16.7 pcs per sqm."
+    },
+    {
+      "id": "tile-adhesive",
+      "name": "Tile Adhesive",
+      "unit": "bag (25kg)",
+      "category": "masonry",
+      "prices": {
+        "low": 280,
+        "typical": 320,
+        "high": 380
+      },
+      "sources": [
+        "Wilcon",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Covers ~4-6 sqm depending on trowel size."
+    },
+    {
+      "id": "tile-grout",
+      "name": "Tile Grout",
+      "unit": "kg",
+      "category": "masonry",
+      "prices": {
+        "low": 35,
+        "typical": 45,
+        "high": 60
+      },
+      "sources": [
+        "Wilcon",
+        "Newtown Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For filling tile joints. Various colors."
+    },
+    {
+      "id": "waterproofing",
+      "name": "Waterproofing Compound",
+      "unit": "kg",
+      "category": "cement",
+      "prices": {
+        "low": 120,
+        "typical": 150,
+        "high": 200
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Additive for waterproof cement mix."
+    },
+    {
+      "id": "silicone-sealant",
+      "name": "Silicone Sealant",
+      "unit": "tube (280ml)",
+      "category": "masonry",
+      "prices": {
+        "low": 120,
+        "typical": 160,
+        "high": 220
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For bathroom/kitchen sealing. Clear or white."
+    },
+    {
+      "id": "pvc-elbow-4",
+      "name": "PVC Elbow 4\" 90°",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 85,
+        "typical": 105,
+        "high": 130
+      },
+      "sources": [
+        "Atlanta Hardware",
+        "Newtown"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Orange S1000. For drainage turns."
+    },
+    {
+      "id": "pvc-tee-4",
+      "name": "PVC Tee 4\"",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 95,
+        "typical": 120,
+        "high": 150
+      },
+      "sources": [
+        "Atlanta Hardware",
+        "Newtown"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Orange S1000. For drainage branches."
+    },
+    {
+      "id": "pvc-clean-out-4",
+      "name": "PVC Clean-out 4\"",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 65,
+        "typical": 85,
+        "high": 110
+      },
+      "sources": [
+        "Atlanta Hardware",
+        "Newtown"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "For drainage access/maintenance."
+    },
+    {
+      "id": "electrical-outlet",
+      "name": "Duplex Outlet",
+      "unit": "pc",
+      "category": "electrical",
+      "prices": {
+        "low": 65,
+        "typical": 85,
+        "high": 120
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Universal type. Economy grade."
+    },
+    {
+      "id": "electrical-switch",
+      "name": "1-Gang Switch",
+      "unit": "pc",
+      "category": "electrical",
+      "prices": {
+        "low": 45,
+        "typical": 65,
+        "high": 95
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Single pole. Economy grade."
+    },
+    {
+      "id": "utility-box",
+      "name": "Utility Box 2x4",
+      "unit": "pc",
+      "category": "electrical",
+      "prices": {
+        "low": 12,
+        "typical": 18,
+        "high": 25
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "PVC type. For outlets and switches."
+    },
+    {
+      "id": "concrete-nails",
+      "name": "Concrete Nails 2\"",
+      "unit": "kg",
+      "category": "steel",
+      "prices": {
+        "low": 95,
+        "typical": 110,
+        "high": 130
+      },
+      "sources": [
+        "Newtown Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-16",
+      "notes": "Hardened steel. For nailing to concrete/CHB."
     }
   ]
 }
