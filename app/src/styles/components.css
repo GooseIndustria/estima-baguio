@@ -7,10 +7,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--color-bg-secondary);
+    background: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid var(--color-border);
     padding: var(--space-3) var(--space-4);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 .header-content {
@@ -58,10 +58,23 @@
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
+
     color: var(--color-text-muted);
     padding: var(--space-2);
-    border-radius: var(--border-radius-full);
+    border-radius: var(--border-radius-sm);
     transition: all var(--transition-fast);
+}
+
+.search-clear:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+.btn-icon {
+    width: var(--touch-target);
+    height: var(--touch-target);
+    padding: 0;
+    border-radius: var(--border-radius-sm);
 }
 
 .search-clear:hover {
@@ -89,9 +102,10 @@
     align-items: center;
     gap: var(--space-1);
     padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-3);
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-full);
+    border-radius: var(--border-radius-sm);
     white-space: nowrap;
     font-size: var(--font-size-sm);
     transition: all var(--transition-fast);
@@ -111,7 +125,7 @@
 .material-item {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-sm);
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-3);
     transition: all var(--transition-fast);
@@ -173,7 +187,7 @@
 .line-item {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-sm);
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-2);
     animation: fadeIn var(--transition-base) ease-out;
@@ -254,8 +268,10 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    left: 0;
     right: 0;
-    background: var(--color-bg-secondary);
+    background: rgba(248, 250, 252, 0.95);
+    /* High opacity slate-50 */
     border-top: 1px solid var(--color-border);
     padding: var(--space-4);
     padding-bottom: calc(var(--space-4) + var(--safe-area-bottom));

@@ -12,11 +12,14 @@ function AppContent() {
   const {
     materials,
     categories,
+    sources,
     isLoading,
     searchQuery,
     setSearchQuery,
     selectedCategory,
     setSelectedCategory,
+    selectedSource,
+    setSelectedSource,
   } = useMaterials();
 
   return (
@@ -38,6 +41,9 @@ function AppContent() {
           categories={categories}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          sources={sources}
+          selectedSource={selectedSource}
+          setSelectedSource={setSelectedSource}
         />
 
         <LineItems />

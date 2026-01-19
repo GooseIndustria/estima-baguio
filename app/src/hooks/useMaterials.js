@@ -15,6 +15,7 @@ export function useMaterials() {
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedSource, setSelectedSource] = useState(null);
 
     // Load initial data
     useEffect(() => {
@@ -39,13 +40,29 @@ export function useMaterials() {
         loadData();
     }, [isReady, getAllMaterials, getCategories]);
 
-    // Filtered materials based on search and category
+    // Extract unique sources
+    const sources = useMemo(() => {
+        const uniqueSources = new Set();
+        materials.forEach(m => {
+            if (m.sources && Array.isArray(m.sources)) {
+                m.sources.forEach(s => uniqueSources.add(s));
+            }
+        });
+        return Array.from(uniqueSources).sort();
+    }, [materials]);
+
+    // Filtered materials based on search, category, and source
     const filteredMaterials = useMemo(() => {
         let result = materials;
 
         // Filter by category
         if (selectedCategory) {
             result = result.filter(m => m.category === selectedCategory);
+        }
+
+        // Filter by source
+        if (selectedSource) {
+            result = result.filter(m => m.sources && m.sources.includes(selectedSource));
         }
 
         // Filter by search query
@@ -58,7 +75,7 @@ export function useMaterials() {
         }
 
         return result;
-    }, [materials, selectedCategory, searchQuery]);
+    }, [materials, selectedCategory, selectedSource, searchQuery]);
 
     // Update price handler
     const handlePriceUpdate = useCallback(async (materialId, prices, notes) => {
@@ -82,11 +99,14 @@ export function useMaterials() {
         materials: filteredMaterials,
         allMaterials: materials,
         categories,
+        sources,
         isLoading,
         searchQuery,
         setSearchQuery,
         selectedCategory,
         setSelectedCategory,
+        selectedSource,
+        setSelectedSource,
         updatePrice: handlePriceUpdate,
         refreshMaterials,
     };
