@@ -29,7 +29,7 @@ build
 .idea
 .DS_Store
 *.suo
-*.ntvs*
+*.ntvs*E
 *.njsproj
 *.sln
 *.sw?
