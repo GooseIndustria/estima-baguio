@@ -13,6 +13,22 @@ export function LineItems() {
         updateQuantity(itemId, currentQty - 1);
     }, [updateQuantity]);
 
+    const handleQuantityChange = useCallback((itemId, value) => {
+        // Parse the input value, default to 1 if invalid
+        const newQty = parseInt(value, 10);
+        if (!isNaN(newQty) && newQty >= 0) {
+            updateQuantity(itemId, newQty);
+        }
+    }, [updateQuantity]);
+
+    const handleQuantityBlur = useCallback((itemId, value) => {
+        // On blur, ensure we have a valid quantity (at least 1)
+        const newQty = parseInt(value, 10);
+        if (isNaN(newQty) || newQty < 1) {
+            updateQuantity(itemId, 1);
+        }
+    }, [updateQuantity]);
+
     if (lineItems.length === 0) {
         return null;
     }
@@ -53,7 +69,14 @@ export function LineItems() {
                                 >
                                     −
                                 </button>
-                                <span className="quantity-value">{item.quantity}</span>
+                                <input
+                                    type="number"
+                                    className="quantity-input"
+                                    value={item.quantity}
+                                    onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                    onBlur={(e) => handleQuantityBlur(item.id, e.target.value)}
+                                    min="1"
+                                />
                                 <button
                                     className="quantity-btn"
                                     onClick={() => handleIncrement(item.id, item.quantity)}

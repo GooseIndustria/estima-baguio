@@ -2,25 +2,12 @@ import './styles/index.css';
 import './styles/components.css';
 
 import { EstimateProvider } from './context/EstimateContext';
-import { useMaterials } from './hooks/useMaterials';
-import MaterialSearch from './components/MaterialSearch';
-import MaterialList from './components/MaterialList';
-import LineItems from './components/LineItems';
-import EstimateSummary from './components/EstimateSummary';
+import { NavigationProvider, useNavigation, PAGES } from './context/NavigationContext';
+import MaterialSelectionPage from './pages/MaterialSelectionPage';
+import EstimatePage from './pages/EstimatePage';
 
 function AppContent() {
-  const {
-    materials,
-    categories,
-    sources,
-    isLoading,
-    searchQuery,
-    setSearchQuery,
-    selectedCategory,
-    setSelectedCategory,
-    selectedSource,
-    setSelectedSource,
-  } = useMaterials();
+  const { currentPage } = useNavigation();
 
   return (
     <>
@@ -28,34 +15,14 @@ function AppContent() {
       <header className="header">
         <div className="header-content">
           <h1 className="header-title">
-            <span>📐</span> Estima <span>Baguio</span>
+            <span>📐</span> ESTIMA <span>- Baguio City Prices</span>
           </h1>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="main-content">
-        <MaterialSearch
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          sources={sources}
-          selectedSource={selectedSource}
-          setSelectedSource={setSelectedSource}
-        />
-
-        <LineItems />
-
-        <MaterialList
-          materials={materials}
-          isLoading={isLoading}
-        />
-      </main>
-
-      {/* Summary Footer */}
-      <EstimateSummary />
+      {/* Render current page */}
+      {currentPage === PAGES.MATERIALS && <MaterialSelectionPage />}
+      {currentPage === PAGES.ESTIMATE && <EstimatePage />}
     </>
   );
 }
@@ -63,7 +30,9 @@ function AppContent() {
 function App() {
   return (
     <EstimateProvider>
-      <AppContent />
+      <NavigationProvider>
+        <AppContent />
+      </NavigationProvider>
     </EstimateProvider>
   );
 }

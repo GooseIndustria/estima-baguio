@@ -39,6 +39,21 @@
       "id": "electrical",
       "name": "Electrical",
       "icon": "⚡"
+    },
+    {
+      "id": "glass",
+      "name": "Glass & Aluminum",
+      "icon": "🪟"
+    },
+    {
+      "id": "doors",
+      "name": "Doors & Windows",
+      "icon": "🚪"
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware & Fasteners",
+      "icon": "🔧"
     }
   ],
   "materials": [
@@ -53,8 +68,8 @@
         "high": 320
       },
       "sources": [
-        "Newtown Hardware",
-        "Apex Construction Supply"
+        "APCO Hardware",
+        "First Pacific Hardware"
       ],
       "lastUpdated": "2026-01-15",
       "notes": "Standard Type 1. Holiday markup may apply Dec-Jan."
@@ -102,8 +117,8 @@
         "high": 200
       },
       "sources": [
-        "Apex",
-        "Newtown Hardware"
+        "First Pacific Hardware",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-15",
       "notes": "Grade 40. Bulk orders may get 5% discount."
@@ -153,7 +168,7 @@
         "high": 100
       },
       "sources": [
-        "Session Lumber",
+        "U-Need Lumber",
         "Various"
       ],
       "lastUpdated": "2026-01-15",
@@ -170,7 +185,7 @@
         "high": 65
       },
       "sources": [
-        "Session Lumber"
+        "U-Need Lumber"
       ],
       "lastUpdated": "2026-01-15",
       "notes": "Kiln dried preferred for finish work."
@@ -186,7 +201,7 @@
         "high": 420
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-15",
@@ -252,8 +267,8 @@
         "high": 360
       },
       "sources": [
-        "Atlanta Hardware",
-        "Newtown"
+        "TG Home Builders",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-15",
       "notes": "Orange, for sewage/drainage."
@@ -286,8 +301,8 @@
         "high": 38
       },
       "sources": [
-        "Newtown Hardware",
-        "CDR King"
+        "APCO Hardware",
+        "CW Hardware"
       ],
       "lastUpdated": "2026-01-15",
       "notes": "Stranded, 3.5mm². Check for PSI mark."
@@ -303,8 +318,8 @@
         "high": 26
       },
       "sources": [
-        "Newtown Hardware",
-        "CDR King"
+        "APCO Hardware",
+        "CW Hardware"
       ],
       "lastUpdated": "2026-01-15",
       "notes": "Stranded, 2.0mm². For lighting circuits."
@@ -320,8 +335,8 @@
         "high": 95
       },
       "sources": [
-        "Apex",
-        "Newtown Hardware"
+        "First Pacific Hardware",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "For tying rebars. ~80m per kg."
@@ -337,8 +352,8 @@
         "high": 125
       },
       "sources": [
-        "Apex",
-        "Newtown Hardware"
+        "First Pacific Hardware",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Grade 40. For stirrups and light reinforcement."
@@ -354,8 +369,8 @@
         "high": 1100
       },
       "sources": [
-        "Session Lumber",
-        "Newtown"
+        "U-Need Lumber",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Water-resistant. For formwork and exterior use."
@@ -371,7 +386,7 @@
         "high": 480
       },
       "sources": [
-        "Session Lumber",
+        "U-Need Lumber",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -388,7 +403,7 @@
         "high": 95
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -405,7 +420,7 @@
         "high": 100
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -422,8 +437,8 @@
         "high": 2300
       },
       "sources": [
-        "Apex",
-        "Newtown Hardware"
+        "First Pacific Hardware",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "For slab reinforcement. Standard 1.2m x 2.4m."
@@ -439,7 +454,7 @@
         "high": 480
       },
       "sources": [
-        "Apex",
+        "First Pacific Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -456,8 +471,8 @@
         "high": 800
       },
       "sources": [
-        "Atlanta Hardware",
-        "Newtown"
+        "TG Home Builders",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Schedule 40. For water lines or structural."
@@ -490,8 +505,8 @@
         "high": 850
       },
       "sources": [
-        "Apex",
-        "Newtown Hardware"
+        "First Pacific Hardware",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Grade 40. For heavy columns and beams."
@@ -507,7 +522,7 @@
         "high": 550
       },
       "sources": [
-        "Apex",
+        "First Pacific Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -524,7 +539,7 @@
         "high": 650
       },
       "sources": [
-        "Apex",
+        "First Pacific Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -541,7 +556,7 @@
         "high": 250
       },
       "sources": [
-        "Apex",
+        "First Pacific Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -558,7 +573,7 @@
         "high": 700
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Paint shops"
       ],
       "lastUpdated": "2026-01-16",
@@ -575,7 +590,7 @@
         "high": 550
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Paint shops"
       ],
       "lastUpdated": "2026-01-16",
@@ -593,7 +608,7 @@
       },
       "sources": [
         "Wilcon",
-        "Newtown Hardware"
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Economy grade. ~6.25 pcs per sqm."
@@ -610,7 +625,7 @@
       },
       "sources": [
         "Wilcon",
-        "Newtown Hardware"
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "For bathroom/kitchen walls. ~16.7 pcs per sqm."
@@ -627,7 +642,7 @@
       },
       "sources": [
         "Wilcon",
-        "Newtown Hardware"
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Covers ~4-6 sqm depending on trowel size."
@@ -644,7 +659,7 @@
       },
       "sources": [
         "Wilcon",
-        "Newtown Hardware"
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "For filling tile joints. Various colors."
@@ -660,7 +675,7 @@
         "high": 200
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -677,7 +692,7 @@
         "high": 220
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -694,8 +709,8 @@
         "high": 130
       },
       "sources": [
-        "Atlanta Hardware",
-        "Newtown"
+        "TG Home Builders",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Orange S1000. For drainage turns."
@@ -711,8 +726,8 @@
         "high": 150
       },
       "sources": [
-        "Atlanta Hardware",
-        "Newtown"
+        "TG Home Builders",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Orange S1000. For drainage branches."
@@ -728,8 +743,8 @@
         "high": 110
       },
       "sources": [
-        "Atlanta Hardware",
-        "Newtown"
+        "TG Home Builders",
+        "APCO Hardware"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "For drainage access/maintenance."
@@ -745,7 +760,7 @@
         "high": 120
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Ace Hardware"
       ],
       "lastUpdated": "2026-01-16",
@@ -762,7 +777,7 @@
         "high": 95
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Ace Hardware"
       ],
       "lastUpdated": "2026-01-16",
@@ -779,7 +794,7 @@
         "high": 25
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
@@ -796,11 +811,623 @@
         "high": 130
       },
       "sources": [
-        "Newtown Hardware",
+        "APCO Hardware",
         "Various"
       ],
       "lastUpdated": "2026-01-16",
       "notes": "Hardened steel. For nailing to concrete/CHB."
+    },
+    {
+      "id": "masonry-cement",
+      "name": "Masonry Cement",
+      "unit": "bag (40kg)",
+      "category": "cement",
+      "prices": {
+        "low": 240,
+        "typical": 265,
+        "high": 290
+      },
+      "sources": [
+        "APCO Hardware",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "For mortar mix. Lower strength than Portland."
+    },
+    {
+      "id": "skim-coat",
+      "name": "Skim Coat / Wall Putty",
+      "unit": "bag (25kg)",
+      "category": "cement",
+      "prices": {
+        "low": 380,
+        "typical": 450,
+        "high": 520
+      },
+      "sources": [
+        "APCO Hardware",
+        "Wilcon"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "For smooth wall finishing before paint."
+    },
+    {
+      "id": "ready-mix",
+      "name": "Ready Mix Concrete",
+      "unit": "cu.m.",
+      "category": "cement",
+      "prices": {
+        "low": 4500,
+        "typical": 5200,
+        "high": 6000
+      },
+      "sources": [
+        "Holcim",
+        "Various batching plants"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "3000 PSI. Delivery min. 3 cu.m. within Baguio."
+    },
+    {
+      "id": "rib-type-roofing",
+      "name": "Rib-Type Roofing 0.4mm",
+      "unit": "lm",
+      "category": "roofing",
+      "prices": {
+        "low": 95,
+        "typical": 115,
+        "high": 140
+      },
+      "sources": [
+        "APCO Hardware",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Pre-painted. Custom cut to length."
+    },
+    {
+      "id": "ridge-roll",
+      "name": "Ridge Roll",
+      "unit": "lm",
+      "category": "roofing",
+      "prices": {
+        "low": 85,
+        "typical": 100,
+        "high": 120
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "For roof ridge finishing."
+    },
+    {
+      "id": "flashing",
+      "name": "Flashing / Spandrel",
+      "unit": "pc",
+      "category": "roofing",
+      "prices": {
+        "low": 180,
+        "typical": 220,
+        "high": 280
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Pre-painted. For wall-roof joints."
+    },
+    {
+      "id": "gutter-pvc",
+      "name": "PVC Rain Gutter",
+      "unit": "pc (3m)",
+      "category": "roofing",
+      "prices": {
+        "low": 320,
+        "typical": 380,
+        "high": 450
+      },
+      "sources": [
+        "APCO Hardware",
+        "TG Home Builders"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "5\" width. Includes end caps and brackets."
+    },
+    {
+      "id": "downspout-pvc",
+      "name": "PVC Downspout",
+      "unit": "pc (3m)",
+      "category": "roofing",
+      "prices": {
+        "low": 180,
+        "typical": 220,
+        "high": 280
+      },
+      "sources": [
+        "APCO Hardware",
+        "TG Home Builders"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "3\" diameter. For rainwater drainage."
+    },
+    {
+      "id": "phenolic-board",
+      "name": "Phenolic Board 3/4\"",
+      "unit": "pc (4x8)",
+      "category": "lumber",
+      "prices": {
+        "low": 1800,
+        "typical": 2100,
+        "high": 2500
+      },
+      "sources": [
+        "U-Need Lumber",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Film-faced. For concrete formwork. 10+ uses."
+    },
+    {
+      "id": "fiber-cement-board",
+      "name": "Fiber Cement Board 1/2\"",
+      "unit": "pc (4x8)",
+      "category": "lumber",
+      "prices": {
+        "low": 550,
+        "typical": 650,
+        "high": 780
+      },
+      "sources": [
+        "U-Need Lumber",
+        "Wilcon"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Hardiflex type. For ceilings and partitions."
+    },
+    {
+      "id": "hardiflex-4mm",
+      "name": "Hardiflex 4mm",
+      "unit": "pc (4x8)",
+      "category": "lumber",
+      "prices": {
+        "low": 380,
+        "typical": 450,
+        "high": 520
+      },
+      "sources": [
+        "U-Need Lumber",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Thin fiber cement. For ceilings."
+    },
+    {
+      "id": "circuit-breaker-20a",
+      "name": "Circuit Breaker 20A",
+      "unit": "pc",
+      "category": "electrical",
+      "prices": {
+        "low": 180,
+        "typical": 250,
+        "high": 350
+      },
+      "sources": [
+        "APCO Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Bolt-on type. For branch circuits."
+    },
+    {
+      "id": "panel-box-4way",
+      "name": "Panel Box 4-Way",
+      "unit": "pc",
+      "category": "electrical",
+      "prices": {
+        "low": 450,
+        "typical": 580,
+        "high": 750
+      },
+      "sources": [
+        "APCO Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Plug-in type. For small residential."
+    },
+    {
+      "id": "pvc-conduit-half",
+      "name": "PVC Conduit 1/2\"",
+      "unit": "pc (10ft)",
+      "category": "electrical",
+      "prices": {
+        "low": 28,
+        "typical": 35,
+        "high": 45
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Orange electrical conduit."
+    },
+    {
+      "id": "flexible-conduit",
+      "name": "Flexible Conduit 1/2\"",
+      "unit": "meter",
+      "category": "electrical",
+      "prices": {
+        "low": 18,
+        "typical": 25,
+        "high": 35
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "For appliance connections."
+    },
+    {
+      "id": "junction-box",
+      "name": "Junction Box 4x4",
+      "unit": "pc",
+      "category": "electrical",
+      "prices": {
+        "low": 25,
+        "typical": 35,
+        "high": 50
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "PVC type. For wire connections."
+    },
+    {
+      "id": "water-closet",
+      "name": "Water Closet (Toilet)",
+      "unit": "set",
+      "category": "plumbing",
+      "prices": {
+        "low": 2800,
+        "typical": 4500,
+        "high": 8000
+      },
+      "sources": [
+        "Wilcon",
+        "TG Home Builders"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Economy 2-piece. Including tank fittings."
+    },
+    {
+      "id": "lavatory-pedestal",
+      "name": "Lavatory Pedestal",
+      "unit": "set",
+      "category": "plumbing",
+      "prices": {
+        "low": 1500,
+        "typical": 2200,
+        "high": 3500
+      },
+      "sources": [
+        "Wilcon",
+        "TG Home Builders"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Economy grade. With pedestal stand."
+    },
+    {
+      "id": "faucet-chrome",
+      "name": "Faucet Chrome",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 280,
+        "typical": 450,
+        "high": 800
+      },
+      "sources": [
+        "Wilcon",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Economy grade. For lavatory or kitchen."
+    },
+    {
+      "id": "gate-valve-half",
+      "name": "Gate Valve 1/2\"",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 85,
+        "typical": 120,
+        "high": 180
+      },
+      "sources": [
+        "TG Home Builders",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Brass. For water line control."
+    },
+    {
+      "id": "check-valve-half",
+      "name": "Check Valve 1/2\"",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 95,
+        "typical": 140,
+        "high": 200
+      },
+      "sources": [
+        "TG Home Builders",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Swing type. Prevents backflow."
+    },
+    {
+      "id": "septic-tank-500",
+      "name": "Septic Tank 500L",
+      "unit": "pc",
+      "category": "plumbing",
+      "prices": {
+        "low": 6500,
+        "typical": 8000,
+        "high": 10000
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Polyethylene. For 1-2 person household."
+    },
+    {
+      "id": "jalousie-glass",
+      "name": "Jalousie Glass Blade",
+      "unit": "pc",
+      "category": "glass",
+      "prices": {
+        "low": 25,
+        "typical": 35,
+        "high": 50
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various glass shops"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "4\" x 24\". Clear glass."
+    },
+    {
+      "id": "glass-panel-5mm",
+      "name": "Clear Glass 5mm",
+      "unit": "sq.ft.",
+      "category": "glass",
+      "prices": {
+        "low": 55,
+        "typical": 70,
+        "high": 90
+      },
+      "sources": [
+        "Various glass shops",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Float glass. Custom cut to size."
+    },
+    {
+      "id": "aluminum-frame-window",
+      "name": "Aluminum Sliding Window",
+      "unit": "sq.ft.",
+      "category": "glass",
+      "prices": {
+        "low": 350,
+        "typical": 450,
+        "high": 600
+      },
+      "sources": [
+        "Various glass shops",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "With 5mm glass. Standard frame."
+    },
+    {
+      "id": "aluminum-sliding-door",
+      "name": "Aluminum Sliding Door",
+      "unit": "sq.ft.",
+      "category": "glass",
+      "prices": {
+        "low": 550,
+        "typical": 700,
+        "high": 900
+      },
+      "sources": [
+        "Various glass shops",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "With 5mm glass. Heavy-duty frame."
+    },
+    {
+      "id": "hollow-core-door",
+      "name": "Hollow Core Door",
+      "unit": "pc",
+      "category": "doors",
+      "prices": {
+        "low": 1200,
+        "typical": 1500,
+        "high": 1900
+      },
+      "sources": [
+        "U-Need Lumber",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "32\" x 80\". Unfinished. For interior."
+    },
+    {
+      "id": "flush-door-plywood",
+      "name": "Plywood Flush Door",
+      "unit": "pc",
+      "category": "doors",
+      "prices": {
+        "low": 1800,
+        "typical": 2200,
+        "high": 2800
+      },
+      "sources": [
+        "U-Need Lumber",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "32\" x 80\". Solid core. For exterior."
+    },
+    {
+      "id": "pvc-door",
+      "name": "PVC Door",
+      "unit": "pc",
+      "category": "doors",
+      "prices": {
+        "low": 2500,
+        "typical": 3200,
+        "high": 4200
+      },
+      "sources": [
+        "Wilcon",
+        "APCO Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Standard size. Waterproof. For bathroom."
+    },
+    {
+      "id": "steel-door",
+      "name": "Steel Security Door",
+      "unit": "pc",
+      "category": "doors",
+      "prices": {
+        "low": 5500,
+        "typical": 7500,
+        "high": 12000
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "With frame. For main entrance."
+    },
+    {
+      "id": "expansion-bolt-half",
+      "name": "Expansion Bolt 1/2\"",
+      "unit": "pc",
+      "category": "hardware",
+      "prices": {
+        "low": 18,
+        "typical": 25,
+        "high": 35
+      },
+      "sources": [
+        "APCO Hardware",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Sleeve type. For concrete anchoring."
+    },
+    {
+      "id": "machine-bolt-half",
+      "name": "Machine Bolt 1/2\" x 4\"",
+      "unit": "pc",
+      "category": "hardware",
+      "prices": {
+        "low": 12,
+        "typical": 18,
+        "high": 25
+      },
+      "sources": [
+        "APCO Hardware",
+        "Various"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "With nut and washer."
+    },
+    {
+      "id": "hinge-4inch",
+      "name": "Door Hinge 4\"",
+      "unit": "pair",
+      "category": "hardware",
+      "prices": {
+        "low": 85,
+        "typical": 120,
+        "high": 180
+      },
+      "sources": [
+        "APCO Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Stainless type. For standard doors."
+    },
+    {
+      "id": "door-knob-lockset",
+      "name": "Door Knob Lockset",
+      "unit": "set",
+      "category": "hardware",
+      "prices": {
+        "low": 350,
+        "typical": 550,
+        "high": 900
+      },
+      "sources": [
+        "APCO Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Entry type with key. Economy grade."
+    },
+    {
+      "id": "gate-roller",
+      "name": "Gate Roller / Wheel",
+      "unit": "pc",
+      "category": "hardware",
+      "prices": {
+        "low": 180,
+        "typical": 280,
+        "high": 420
+      },
+      "sources": [
+        "APCO Hardware",
+        "First Pacific Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "4\" V-groove. For sliding gates."
+    },
+    {
+      "id": "padlock-40mm",
+      "name": "Padlock 40mm",
+      "unit": "pc",
+      "category": "hardware",
+      "prices": {
+        "low": 120,
+        "typical": 180,
+        "high": 300
+      },
+      "sources": [
+        "APCO Hardware",
+        "Ace Hardware"
+      ],
+      "lastUpdated": "2026-01-20",
+      "notes": "Brass or steel. Standard security."
     }
   ]
 }

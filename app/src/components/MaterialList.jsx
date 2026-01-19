@@ -1,13 +1,20 @@
-import { useCallback } from 'react';
 import { formatCurrency, formatRelativeDate } from '../utils/calculations';
 import { useEstimate } from '../context/EstimateContext';
 
 export function MaterialList({ materials, isLoading }) {
-    const { addItem } = useEstimate();
+    const { addItem, lineItems } = useEstimate();
 
-    const handleAddMaterial = useCallback((material) => {
-        addItem(material, 1);
-    }, [addItem]);
+    // Check if a material is already in the estimate
+    const isInEstimate = (materialId) => {
+        return lineItems.some(item => item.material.id === materialId);
+    };
+
+    const handleClick = (material) => {
+        // Only add if not already in estimate
+        if (!isInEstimate(material.id)) {
+            addItem(material, 1);
+        }
+    };
 
     if (isLoading) {
         return (
@@ -35,32 +42,38 @@ export function MaterialList({ materials, isLoading }) {
                 <span className="section-count">{materials.length} items</span>
             </div>
 
-            {materials.map((material) => (
-                <div
-                    key={material.id}
-                    className="material-item"
-                    onClick={() => handleAddMaterial(material)}
-                >
-                    <div className="material-header">
-                        <div>
-                            <div className="material-name">{material.name}</div>
-                            <div className="material-unit">per {material.unit}</div>
+            {materials.map((material) => {
+                const alreadyAdded = isInEstimate(material.id);
+                return (
+                    <div
+                        key={material.id}
+                        className={`material-item ${alreadyAdded ? 'added' : ''}`}
+                        onClick={() => handleClick(material)}
+                    >
+                        <div className="material-header">
+                            <div>
+                                <div className="material-name">
+                                    {material.name}
+                                    {alreadyAdded && <span className="added-badge">✓ Added</span>}
+                                </div>
+                                <div className="material-unit">per {material.unit}</div>
+                            </div>
+                            <div style={{ textAlign: 'right' }}>
+                                <div className="material-price">
+                                    {formatCurrency(material.prices.typical)}
+                                </div>
+                                <div className="material-price-range">
+                                    {formatCurrency(material.prices.low, { showSymbol: false })} - {formatCurrency(material.prices.high, { showSymbol: false })}
+                                </div>
+                            </div>
                         </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <div className="material-price">
-                                {formatCurrency(material.prices.typical)}
-                            </div>
-                            <div className="material-price-range">
-                                {formatCurrency(material.prices.low, { showSymbol: false })} - {formatCurrency(material.prices.high, { showSymbol: false })}
-                            </div>
+                        <div className="material-meta">
+                            <span>📍 {material.sources[0]}</span>
+                            <span>🕐 {formatRelativeDate(material.lastUpdated)}</span>
                         </div>
                     </div>
-                    <div className="material-meta">
-                        <span>📍 {material.sources[0]}</span>
-                        <span>🕐 {formatRelativeDate(material.lastUpdated)}</span>
-                    </div>
-                </div>
-            ))}
+                );
+            })}
         </div>
     );
 }
