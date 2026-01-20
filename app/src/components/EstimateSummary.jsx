@@ -19,81 +19,90 @@ export function EstimateSummary() {
     }, [lineItems, totals]);
 
     const handleExportPDF = useCallback(() => {
-        const doc = new jsPDF();
+        // Use landscape orientation for more horizontal space
+        const doc = new jsPDF({ orientation: 'landscape' });
 
-        // Helper function to format currency for PDF with proper peso sign
-        // Using Unicode escape for Philippine Peso sign to ensure proper rendering
+        // Helper function to format currency with PHP prefix (font-safe)
         const formatPdfCurrency = (amount) => {
             const formatted = amount.toLocaleString('en-PH', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
             });
-            return `\u20B1${formatted}`; // ₱ Unicode: U+20B1
+            return `PHP ${formatted}`;
         };
 
+        // Page dimensions (landscape A4: 297mm x 210mm)
+        const pageWidth = 297;
+        const pageHeight = 210;
+        const margin = 20;
+
         // Header
-        doc.setFontSize(20);
-        doc.text('ESTIMA - Baguio City Prices', 14, 22);
+        doc.setFontSize(22);
+        doc.setTextColor(0);
+        doc.text('ESTIMA - Baguio City Prices', margin, 25);
 
-        doc.setFontSize(10);
+        doc.setFontSize(11);
         doc.setTextColor(100);
-        doc.text('Local Construction Pricing Intelligence', 14, 28);
-        doc.text(`Date: ${new Date().toLocaleDateString('en-PH')}`, 14, 34);
-
-        // Grid Design Element
-        doc.setDrawColor(200);
-        doc.line(14, 38, 196, 38);
+        doc.text('Local Construction Pricing Intelligence', margin, 33);
+        doc.text(`Date: ${new Date().toLocaleDateString('en-PH')}`, margin, 40);
 
         // Table Data
         const tableData = lineItems.map(item => [
             item.material.name,
-            item.material.sources[0] || 'Various', // Just take first source for now
+            item.material.sources[0] || 'Various',
             `${item.quantity} ${item.material.unit}`,
             formatPdfCurrency(item.material.prices[priceMode]),
             formatPdfCurrency(item.material.prices[priceMode] * item.quantity)
         ]);
 
-        // Page width is 210mm, we use 14mm left margin and 14mm right margin = 182mm content width
-        const pageWidth = 210;
-        const leftMargin = 14;
-        const rightMargin = 14;
-        const contentWidth = pageWidth - leftMargin - rightMargin; // 182mm
-
         autoTable(doc, {
-            startY: 42,
+            startY: 48,
             head: [['Material', 'Source', 'Quantity', 'Unit Price', 'Amount']],
             body: tableData,
-            theme: 'grid',
-            headStyles: { fillColor: [240, 240, 240], textColor: [40, 40, 40], lineColor: [200, 200, 200] },
-            styles: { fontSize: 9, font: 'helvetica', cellPadding: 3 },
-            margin: { left: leftMargin, right: rightMargin },
-            tableWidth: contentWidth,
+            theme: 'striped',
+            headStyles: {
+                fillColor: [66, 66, 66],
+                textColor: [255, 255, 255],
+                fontStyle: 'bold',
+                fontSize: 10
+            },
+            bodyStyles: {
+                fontSize: 10
+            },
+            styles: {
+                cellPadding: 4,
+                overflow: 'linebreak'
+            },
+            margin: { left: margin, right: margin },
+            tableWidth: 'auto',
             columnStyles: {
-                0: { cellWidth: 50 }, // Material - fixed width
-                1: { cellWidth: 40 }, // Source
-                2: { cellWidth: 28 }, // Quantity
-                3: { cellWidth: 32, halign: 'right' }, // Unit Price
-                4: { cellWidth: 32, halign: 'right', fontStyle: 'bold' } // Amount
+                0: { cellWidth: 'auto' },  // Material - auto width
+                1: { cellWidth: 'auto' },  // Source - auto width
+                2: { cellWidth: 40 },      // Quantity
+                3: { cellWidth: 45, halign: 'right' },  // Unit Price
+                4: { cellWidth: 50, halign: 'right', fontStyle: 'bold' }  // Amount
             }
         });
 
-        // Totals - position aligned with table right edge
-        const finalY = doc.lastAutoTable.finalY + 10;
-        const textRightX = pageWidth - rightMargin; // 196mm from left edge
+        // Totals section
+        const finalY = doc.lastAutoTable.finalY + 15;
+        const textRightX = pageWidth - margin;
 
-        doc.setFontSize(12);
+        doc.setFontSize(14);
         doc.setTextColor(0);
+        doc.setFont('helvetica', 'bold');
         doc.text(`Total (${priceMode}): ${formatPdfCurrency(currentTotal)}`, textRightX, finalY, { align: 'right' });
 
-        doc.setFontSize(10);
-        doc.setTextColor(100);
-        doc.text(`Range: ${formatPdfCurrency(totals.low)} - ${formatPdfCurrency(totals.high)}`, textRightX, finalY + 6, { align: 'right' });
+        doc.setFontSize(11);
+        doc.setTextColor(80);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Range: ${formatPdfCurrency(totals.low)} - ${formatPdfCurrency(totals.high)}`, textRightX, finalY + 8, { align: 'right' });
 
         // Footer / Disclaimer
-        doc.setFontSize(8);
-        doc.setTextColor(150);
-        doc.text('Estimates are based on Baguio City local market averages. Actual store prices may vary.', leftMargin, 280);
-        doc.text('ESTIMA v1.0.0 | Developed by Goose Industria', textRightX, 280, { align: 'right' });
+        doc.setFontSize(9);
+        doc.setTextColor(130);
+        doc.text('Estimates are based on Baguio City local market averages. Actual store prices may vary.', margin, pageHeight - 15);
+        doc.text('ESTIMA v1.0.0 | Developed by Goose Industria', textRightX, pageHeight - 15, { align: 'right' });
 
         doc.save(`estima-baguio-quote-${Date.now()}.pdf`);
     }, [lineItems, totals, currentTotal, priceMode]);
