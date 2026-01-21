@@ -50,7 +50,7 @@ export function calculateEstimateSummary(lineItems) {
 }
 
 // Generate estimate text for sharing
-export function generateEstimateText(lineItems, totals) {
+export function generateEstimateText(lineItems, totals, priceMode = 'typical') {
     if (lineItems.length === 0) {
         return 'No items in estimate.';
     }
@@ -59,13 +59,14 @@ export function generateEstimateText(lineItems, totals) {
     text += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
 
     for (const item of lineItems) {
-        const subtotal = item.material.prices.typical * item.quantity;
+        const price = item.material.prices[priceMode];
+        const subtotal = price * item.quantity;
         text += `• ${item.material.name}\n`;
-        text += `  ${item.quantity} ${item.material.unit} × ₱${item.material.prices.typical.toLocaleString()} = ₱${subtotal.toLocaleString()}\n\n`;
+        text += `  ${item.quantity} ${item.material.unit} × ₱${price.toLocaleString()} = ₱${subtotal.toLocaleString()}\n\n`;
     }
 
     text += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
-    text += `TOTAL (typical): ₱${totals.typical.toLocaleString()}\n`;
+    text += `TOTAL (${priceMode}): ₱${totals[priceMode].toLocaleString()}\n`;
     text += `Range: ₱${totals.low.toLocaleString()} - ₱${totals.high.toLocaleString()}\n`;
     text += '\n📍 Prices based on Baguio City market';
 

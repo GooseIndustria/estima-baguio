@@ -5,6 +5,12 @@ import { formatCurrency, generateEstimateText, copyToClipboard } from '../utils/
 import { useProject } from '../context/ProjectContext';
 import { useNavigation } from '../context/NavigationContext';
 import { useIndexedDB } from '../hooks/useIndexedDB';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import { FileText, Trash2, Copy, Check, Info } from 'lucide-react';
+import { cn } from "@/lib/utils";
 
 export function EstimateSummary() {
     const { lineItems, totals, currentTotal, priceMode, setPriceMode, clearProject, currentProjectName } = useProject();
@@ -25,16 +31,17 @@ export function EstimateSummary() {
     }, [isReady, getAllProjects]);
 
     const handleCopy = useCallback(async () => {
-        const text = generateEstimateText(lineItems, totals);
+        const text = generateEstimateText(lineItems, totals, priceMode);
         const success = await copyToClipboard(text);
 
         if (success) {
             setShowToast(true);
             setTimeout(() => setShowToast(false), 2000);
         }
-    }, [lineItems, totals]);
+    }, [lineItems, totals, priceMode]);
 
     const handleExportPDF = useCallback(() => {
+        // ... (Existing PDF logic kept as is for now, functionality preservation)
         // Use landscape orientation for more horizontal space
         const doc = new jsPDF({ orientation: 'landscape' });
 
@@ -131,7 +138,7 @@ export function EstimateSummary() {
         doc.setFontSize(9);
         doc.setTextColor(130);
         doc.text('Estimates are based on Baguio City local market averages. Actual store prices may vary.', margin, pageHeight - 15);
-        doc.text('ESTIMA v1.0.0 | Developed by Goose Industria', textRightX, pageHeight - 15, { align: 'right' });
+        doc.text('ESTIMA v1.1.0 | Developed by Goose Industria', textRightX, pageHeight - 15, { align: 'right' });
 
         // ==========================================
         // PAGE 2: All Saved Projects Summary
@@ -215,7 +222,7 @@ export function EstimateSummary() {
             doc.setTextColor(130);
             doc.setFont('helvetica', 'normal');
             doc.text('This page lists all saved projects in ESTIMA.', margin, pageHeight - 15);
-            doc.text('ESTIMA v1.0.0 | Developed by Goose Industria', textRightX, pageHeight - 15, { align: 'right' });
+            doc.text('ESTIMA v1.1.0 | Developed by Goose Industria', textRightX, pageHeight - 15, { align: 'right' });
         }
 
         doc.save(`${currentProjectName.replace(/[^a-zA-Z0-9]/g, '-')}-estimate-${Date.now()}.pdf`);
@@ -225,117 +232,115 @@ export function EstimateSummary() {
 
     return (
         <>
-            <div className="summary-footer">
-                <div className="summary-content">
-                    {/* Price mode toggle */}
-                    <div className="price-mode-toggle mb-4">
-                        <button
-                            className={`price-mode-btn low ${priceMode === 'low' ? 'active' : ''}`}
-                            onClick={() => setPriceMode('low')}
-                        >
-                            Low
-                        </button>
-                        <button
-                            className={`price-mode-btn typical ${priceMode === 'typical' ? 'active' : ''}`}
-                            onClick={() => setPriceMode('typical')}
-                        >
-                            Typical
-                        </button>
-                        <button
-                            className={`price-mode-btn high ${priceMode === 'high' ? 'active' : ''}`}
-                            onClick={() => setPriceMode('high')}
-                        >
-                            High
-                        </button>
-                    </div>
+            <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-md border-t p-4 pb-8 safe-bottom z-40 transition-all">
+                <div className="container mx-auto max-w-3xl">
+                    <div className="flex flex-col gap-4">
+                        {/* Price mode toggle */}
+                        <div className="flex bg-muted p-1 rounded-lg w-full">
+                            {['low', 'typical', 'high'].map(mode => (
+                                <button
+                                    key={mode}
+                                    className={cn(
+                                        "flex-1 py-1 text-sm font-medium rounded-md transition-all capitalize",
+                                        priceMode === mode
+                                            ? "bg-background text-foreground shadow-sm"
+                                            : "text-muted-foreground hover:text-foreground"
+                                    )}
+                                    onClick={() => setPriceMode(mode)}
+                                >
+                                    {mode}
+                                </button>
+                            ))}
+                        </div>
 
-                    {/* Total */}
-                    <div className="summary-row">
-                        <div>
-                            <div className="summary-label">Total Estimate ({priceMode})</div>
-                            <div className="summary-range">
-                                Range: {formatCurrency(totals.low)} - {formatCurrency(totals.high)}
+                        {/* Totals */}
+                        <div className="flex justify-between items-end">
+                            <div>
+                                <div className="text-sm font-medium text-muted-foreground mb-1">Total Estimate ({priceMode})</div>
+                                <div className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <Info className="h-3 w-3" />
+                                    Range: {formatCurrency(totals.low)} - {formatCurrency(totals.high)}
+                                </div>
+                            </div>
+                            <div className="text-2xl font-bold tracking-tight text-primary">
+                                {formatCurrency(currentTotal)}
                             </div>
                         </div>
-                        <div className="summary-total currency">
-                            {formatCurrency(currentTotal)}
+
+                        <Separator />
+
+                        {/* Actions */}
+                        <div className="grid grid-cols-3 gap-2">
+                            <Button
+                                variant="outline"
+                                onClick={handleExportPDF}
+                                disabled={isEmpty}
+                                className="w-full"
+                            >
+                                <FileText className="mr-2 h-4 w-4" /> PDF
+                            </Button>
+                            <Button
+                                variant="outline"
+                                onClick={() => setShowClearConfirm(true)}
+                                disabled={isEmpty}
+                                className="w-full text-destructive hover:text-destructive hover:bg-destructive/10"
+                            >
+                                <Trash2 className="mr-2 h-4 w-4" /> Clear
+                            </Button>
+                            <Button
+                                variant="default"
+                                onClick={handleCopy}
+                                disabled={isEmpty}
+                                className="w-full"
+                            >
+                                <Copy className="mr-2 h-4 w-4" /> Copy
+                            </Button>
                         </div>
-                    </div>
 
-                    {/* Actions */}
-                    <div className="summary-actions">
-                        <button
-                            className="btn btn-secondary"
-                            onClick={handleExportPDF}
-                            disabled={isEmpty}
-                            style={{ opacity: isEmpty ? 0.5 : 1 }}
-                        >
-                            📄 PDF
-                        </button>
-                        <button
-                            className="btn btn-secondary"
-                            onClick={() => setShowClearConfirm(true)}
-                            disabled={isEmpty}
-                            style={{ opacity: isEmpty ? 0.5 : 1 }}
-                        >
-                            Clear
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            onClick={handleCopy}
-                            disabled={isEmpty}
-                            style={{ opacity: isEmpty ? 0.5 : 1 }}
-                        >
-                            📋 Copy
-                        </button>
-                    </div>
-
-                    {/* Branding */}
-                    <div className="text-center mt-4 text-xs text-muted font-medium opacity-60">
-                        v1.0.0 · Developed by Goose Industria
+                        <div className="text-center text-[10px] text-muted-foreground pt-1 opacity-60">
+                            v1.1.0 · Developed by Goose Industria
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Toast */}
             {showToast && (
-                <div className="toast toast-success">
-                    ✓ Copied to clipboard
+                <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4">
+                    <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium">
+                        <Check className="h-4 w-4" /> Copied to clipboard
+                    </div>
                 </div>
             )}
 
             {/* Clear Confirmation Modal */}
-            {showClearConfirm && (
-                <div className="modal-overlay" onClick={() => setShowClearConfirm(false)}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <h3 className="modal-title">Delete Project?</h3>
-                        <p className="modal-text">
-                            This will permanently delete "{currentProjectName}" and all its items.
-                        </p>
-                        <div className="modal-actions">
-                            <button
-                                className="btn btn-secondary"
-                                onClick={() => setShowClearConfirm(false)}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="btn btn-danger"
-                                onClick={async () => {
-                                    await clearProject();
-                                    setShowClearConfirm(false);
-                                    navigateTo(PAGES.PROJECTS);
-                                }}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <Dialog open={showClearConfirm} onOpenChange={setShowClearConfirm}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Delete Project Items?</DialogTitle>
+                        <DialogDescription>
+                            This will permanently remove all items from "{currentProjectName}". This action cannot be undone.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setShowClearConfirm(false)}>
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="destructive"
+                            onClick={async () => {
+                                await clearProject();
+                                setShowClearConfirm(false);
+                                navigateTo(PAGES.PROJECTS);
+                            }}
+                        >
+                            Clear All
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </>
     );
 }
 
 export default EstimateSummary;
-
