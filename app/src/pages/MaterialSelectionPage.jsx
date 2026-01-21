@@ -1,5 +1,5 @@
 import { useMaterials } from '../hooks/useMaterials';
-import { useEstimate } from '../context/EstimateContext';
+import { useProject } from '../context/ProjectContext';
 import { useNavigation } from '../context/NavigationContext';
 import MaterialSearch from '../components/MaterialSearch';
 import MaterialList from '../components/MaterialList';
@@ -18,7 +18,7 @@ export function MaterialSelectionPage() {
         setSelectedSource,
     } = useMaterials();
 
-    const { lineItems } = useEstimate();
+    const { lineItems } = useProject();
     const { navigateTo, PAGES } = useNavigation();
 
     const itemCount = lineItems.length;

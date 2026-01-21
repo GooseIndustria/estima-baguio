@@ -1,8 +1,8 @@
 import { formatCurrency, formatRelativeDate } from '../utils/calculations';
-import { useEstimate } from '../context/EstimateContext';
+import { useProject } from '../context/ProjectContext';
 
 export function MaterialList({ materials, isLoading }) {
-    const { addItem, lineItems } = useEstimate();
+    const { addItem, lineItems } = useProject();
 
     // Check if a material is already in the estimate
     const isInEstimate = (materialId) => {

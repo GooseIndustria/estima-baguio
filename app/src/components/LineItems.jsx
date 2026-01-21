@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { formatCurrency } from '../utils/calculations';
-import { useEstimate } from '../context/EstimateContext';
+import { useProject } from '../context/ProjectContext';
 
 export function LineItems() {
-    const { lineItems, updateQuantity, removeItem, priceMode } = useEstimate();
+    const { lineItems, updateQuantity, removeItem, priceMode } = useProject();
 
     const handleIncrement = useCallback((itemId, currentQty) => {
         updateQuantity(itemId, currentQty + 1);

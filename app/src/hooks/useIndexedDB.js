@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import seedData from '../data/materials.json';
 
 const DB_NAME = 'estima-baguio';
-const DB_VERSION = 2; // Bumped to force resync of all materials
+const DB_VERSION = 3; // v3: Added projects store for multi-project support
 
 // Initialize the database
 async function initDB() {
@@ -21,19 +21,25 @@ async function initDB() {
                 db.createObjectStore('categories', { keyPath: 'id' });
             }
 
-            // Estimates store (for saving estimate sessions)
-            if (!db.objectStoreNames.contains('estimates')) {
-                const estimateStore = db.createObjectStore('estimates', { keyPath: 'id' });
-                estimateStore.createIndex('createdAt', 'createdAt');
+            // Projects store (for saving project sessions)
+            if (!db.objectStoreNames.contains('projects')) {
+                const projectStore = db.createObjectStore('projects', { keyPath: 'id' });
+                projectStore.createIndex('createdAt', 'createdAt');
+                projectStore.createIndex('updatedAt', 'updatedAt');
             }
 
             // If upgrading from v1 to v2, clear materials to force full reseed
-            if (oldVersion === 1 && newVersion === 2) {
+            if (oldVersion === 1 && newVersion >= 2) {
                 const materialsStore = transaction.objectStore('materials');
                 materialsStore.clear();
                 const categoriesStore = transaction.objectStore('categories');
                 categoriesStore.clear();
                 console.log('Cleared old materials for v2 resync');
+            }
+
+            // v2 to v3: projects store is added above (no data migration needed)
+            if (oldVersion === 2 && newVersion >= 3) {
+                console.log('Upgraded to v3: Added projects store');
             }
         },
     });
@@ -169,6 +175,54 @@ export function useIndexedDB() {
         );
     }, [db]);
 
+    // ============================================
+    // Project CRUD Operations
+    // ============================================
+
+    // Save a project (create or update)
+    const saveProject = useCallback(async (project) => {
+        if (!db) return null;
+
+        const now = Date.now();
+        const projectToSave = {
+            ...project,
+            id: project.id || `project-${now}`,
+            updatedAt: now,
+            createdAt: project.createdAt || now,
+        };
+
+        await db.put('projects', projectToSave);
+        return projectToSave;
+    }, [db]);
+
+    // Get all projects
+    const getAllProjects = useCallback(async () => {
+        if (!db) return [];
+        const projects = await db.getAll('projects');
+        // Sort by most recently updated
+        return projects.sort((a, b) => b.updatedAt - a.updatedAt);
+    }, [db]);
+
+    // Get a single project by ID
+    const getProject = useCallback(async (id) => {
+        if (!db || !id) return null;
+        return await db.get('projects', id);
+    }, [db]);
+
+    // Delete a project
+    const deleteProject = useCallback(async (id) => {
+        if (!db) return false;
+        await db.delete('projects', id);
+        return true;
+    }, [db]);
+
+    // Get the most recently updated project
+    const getLastProject = useCallback(async () => {
+        if (!db) return null;
+        const projects = await db.getAllFromIndex('projects', 'updatedAt');
+        return projects.length > 0 ? projects[projects.length - 1] : null;
+    }, [db]);
+
     return {
         isReady,
         error,
@@ -179,6 +233,12 @@ export function useIndexedDB() {
         addMaterial,
         deleteMaterial,
         searchMaterials,
+        // Project operations
+        saveProject,
+        getAllProjects,
+        getProject,
+        deleteProject,
+        getLastProject,
     };
 }
 

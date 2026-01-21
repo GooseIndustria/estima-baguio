@@ -3,13 +3,14 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 const NavigationContext = createContext(null);
 
 export const PAGES = {
+    PROJECTS: 'projects',
     MATERIALS: 'materials',
     ESTIMATE: 'estimate',
 };
 
 function getPageFromHash() {
     const hash = window.location.hash.replace('#', '');
-    return Object.values(PAGES).includes(hash) ? hash : PAGES.MATERIALS;
+    return Object.values(PAGES).includes(hash) ? hash : PAGES.PROJECTS;
 }
 
 export function NavigationProvider({ children }) {

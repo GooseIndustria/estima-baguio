@@ -583,3 +583,271 @@
     font-size: var(--font-size-xs);
     font-weight: 600;
 }
+
+/* ============================================
+   Project Components
+   ============================================ */
+
+/* Project List */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* Project Card */
+.project-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-4);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.project-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.project-card:active {
+    transform: translateY(0);
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-2);
+}
+
+.project-card-name {
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.project-card-delete {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--border-radius-sm);
+    opacity: 0.5;
+    transition: all var(--transition-fast);
+}
+
+.project-card-delete:hover {
+    opacity: 1;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.project-card-meta {
+    display: flex;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+}
+
+.project-card-total {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+/* Project Header (in-app) */
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.project-header-back {
+    padding: var(--space-2);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-lg);
+    transition: all var(--transition-fast);
+}
+
+.project-header-back:hover {
+    background: var(--color-bg-secondary);
+}
+
+.project-header-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.project-header-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-primary);
+    padding: var(--space-1) var(--space-2);
+    margin: calc(-1 * var(--space-1)) calc(-1 * var(--space-2));
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.project-header-name:hover {
+    background: var(--color-bg-secondary);
+}
+
+.project-header-edit-icon {
+    font-size: var(--font-size-sm);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.project-header-name:hover .project-header-edit-icon {
+    opacity: 0.6;
+}
+
+.project-header-input {
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius-sm);
+    background: var(--color-bg-card);
+    width: 100%;
+}
+
+.project-header-status {
+    margin-top: var(--space-1);
+}
+
+/* Save indicator */
+.save-indicator {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.save-indicator.saving {
+    color: var(--color-accent);
+}
+
+.save-indicator.saved {
+    color: var(--color-success);
+}
+
+/* Floating New Project Button */
+.floating-new-project-btn {
+    position: fixed;
+    bottom: calc(var(--space-6) + var(--safe-area-bottom));
+    right: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-accent);
+    color: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg), 0 8px 32px rgba(59, 130, 246, 0.3);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    z-index: 90;
+    animation: slideUp 0.3s ease-out;
+}
+
+.floating-new-project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+.floating-new-project-btn:active {
+    transform: translateY(0);
+}
+
+.new-project-icon {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+}
+
+.new-project-text {
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   Modal Components
+   ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    z-index: 200;
+    animation: fadeIn var(--transition-fast) ease-out;
+}
+
+.modal {
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-5);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.2s ease-out;
+}
+
+.modal-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--color-text-primary);
+}
+
+.modal-text {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+}
+
+.modal .input {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-4);
+    background: var(--color-bg-primary);
+}
+
+.modal .input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.modal-actions {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: flex-end;
+}
+
+.modal-actions .btn {
+    min-width: 80px;
+}
+
+/* Danger button */
+.btn-danger {
+    background: var(--color-error);
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
