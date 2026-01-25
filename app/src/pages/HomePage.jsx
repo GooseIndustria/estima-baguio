@@ -1,11 +1,21 @@
 import React from 'react';
 import { useNavigation, PAGES } from '../context/NavigationContext';
+import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { ArrowRight, HardHat, FileText, ShoppingCart, Award } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export default function HomePage() {
     const { navigateTo } = useNavigation();
+    const { isInstallable, promptInstall } = useInstallPrompt();
+
+    const handleJoin = async () => {
+        if (isInstallable) {
+            await promptInstall();
+        } else {
+            navigateTo(PAGES.PROJECTS);
+        }
+    };
 
     return (
         <div className="relative min-h-screen flex flex-col font-sans text-slate-900 bg-slate-50 overflow-hidden">
@@ -79,7 +89,7 @@ export default function HomePage() {
                                 <p className="text-slate-300 text-sm md:text-base">Help us refine the experience.</p>
                             </div>
                             <Button
-                                onClick={() => navigateTo(PAGES.PROJECTS)}
+                                onClick={handleJoin}
                                 size="lg"
                                 className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-6 rounded-lg text-lg shadow-lg hover:shadow-orange-600/20 transition-all w-full md:w-auto"
                             >
