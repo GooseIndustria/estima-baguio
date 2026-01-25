@@ -6,11 +6,12 @@ export const PAGES = {
     PROJECTS: 'projects',
     MATERIALS: 'materials',
     ESTIMATE: 'estimate',
+    HOME: 'home',
 };
 
 function getPageFromHash() {
     const hash = window.location.hash.replace('#', '');
-    return Object.values(PAGES).includes(hash) ? hash : PAGES.PROJECTS;
+    return Object.values(PAGES).includes(hash) ? hash : PAGES.HOME;
 }
 
 export function NavigationProvider({ children }) {
