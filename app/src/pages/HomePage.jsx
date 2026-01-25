@@ -18,80 +18,79 @@ export default function HomePage() {
     };
 
     return (
-        <div className="relative min-h-screen flex flex-col font-sans text-slate-900 bg-slate-50 overflow-hidden">
+        <div className="relative h-[100dvh] flex flex-col font-sans text-slate-900 bg-slate-50 overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-900/30" />
                 <img
                     src="/Background.png"
                     alt="Baguio City Background"
-                    className="w-full h-full object-cover opacity-100"
+                    className="w-full h-full object-cover"
                 />
             </div>
 
             {/* Content Container */}
-            <div className="relative z-10 flex flex-col min-h-screen p-6 md:p-8 max-w-md mx-auto md:max-w-2xl lg:max-w-4xl pt-12 md:pt-24 justify-center">
+            <div className="relative z-10 flex flex-col flex-1 p-4 md:p-6 max-w-md mx-auto md:max-w-2xl lg:max-w-4xl w-full justify-start gap-4 md:gap-6 pt-6 md:pt-10">
 
                 {/* Header/Hero Section */}
-                <div className="text-center mb-12 space-y-6">
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 mx-auto">
-                        <img src="/favicon.svg" alt="Estima Logo" className="w-6 h-6" />
-                        <span className="font-bold text-xl tracking-tight text-white">ESTIMA</span>
-                        <Badge variant="secondary" className="bg-blue-600 text-white hover:bg-blue-700 border-none">BETA v1.1.0</Badge>
+                <div className="text-center space-y-2 md:space-y-4 shrink-0">
+                    <div className="inline-flex items-center gap-2 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded-full border border-slate-700 mx-auto">
+                        <img src="/favicon.svg" alt="Estima Logo" className="w-4 h-4" />
+                        <span className="font-bold text-base tracking-tight text-white">ESTIMA</span>
+                        <Badge variant="secondary" className="bg-blue-600/90 text-white hover:bg-blue-700 border-none px-1.5 py-0.5 text-[9px]">BETA v1.1.0</Badge>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] drop-shadow-lg">
-                        Build with Confidence <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
-                            in Baguio City.
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                        Professional Estimates. <br className="hidden md:block" />
+                        <span className="text-blue-700">
+                            On Your Smartphone.
                         </span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-md">
-                        The ultimate tool for accurate construction cost estimation.
-                        Real local material prices, professional PDF exports, and streamlined project management.
+                    {/* Description - Hidden on very small screens */}
+                    <p className="hidden sm:block text-sm md:text-base text-slate-700 max-w-lg mx-auto leading-relaxed font-medium">
+                        Baguio City Prices. Local materials at your fingertips.
                     </p>
                 </div>
 
-                {/* Action Stack (Mockup Implementation) */}
-                <div className="w-full max-w-2xl mx-auto space-y-4">
+                {/* Action Stack */}
+                <div className="w-full max-w-2xl mx-auto space-y-2 md:space-y-3 shrink-0">
 
                     {/* Card 1: Local Prices */}
-                    <div className="group flex items-stretch bg-slate-800/90 hover:bg-slate-800 backdrop-blur-md rounded-xl overflow-hidden border border-white/10 shadow-2xl transition-all hover:scale-[1.01]">
-                        <div className="bg-blue-900/80 w-20 md:w-24 flex items-center justify-center shrink-0">
-                            <ShoppingCart className="w-8 h-8 md:w-10 md:h-10 text-blue-100" strokeWidth={1.5} />
+                    <div className="group flex items-stretch bg-slate-800/90 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 shadow-lg">
+                        <div className="bg-blue-900/80 w-12 md:w-16 flex items-center justify-center shrink-0">
+                            <ShoppingCart className="w-5 h-5 md:w-6 md:h-6 text-blue-100" strokeWidth={1.5} />
                         </div>
-                        <div className="p-5 md:p-6 flex-1">
-                            <h3 className="text-xl font-bold text-white mb-1">Local Hardware Prices</h3>
-                            <p className="text-slate-300 text-sm md:text-base">Real-time prices from local hardware stores in Baguio City.</p>
+                        <div className="p-2.5 md:p-3 flex-1">
+                            <h3 className="text-sm md:text-base font-bold text-white">Local Hardware Prices</h3>
+                            <p className="text-slate-300 text-[10px] md:text-xs">Real-time prices from local hardware stores.</p>
                         </div>
                     </div>
 
                     {/* Card 2: PDF Export */}
-                    <div className="group flex items-stretch bg-slate-800/90 hover:bg-slate-800 backdrop-blur-md rounded-xl overflow-hidden border border-white/10 shadow-2xl transition-all hover:scale-[1.01]">
-                        <div className="bg-blue-900/80 w-20 md:w-24 flex items-center justify-center shrink-0">
-                            <FileText className="w-8 h-8 md:w-10 md:h-10 text-blue-100" strokeWidth={1.5} />
+                    <div className="group flex items-stretch bg-slate-800/90 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 shadow-lg">
+                        <div className="bg-blue-900/80 w-12 md:w-16 flex items-center justify-center shrink-0">
+                            <FileText className="w-5 h-5 md:w-6 md:h-6 text-blue-100" strokeWidth={1.5} />
                         </div>
-                        <div className="p-5 md:p-6 flex-1">
-                            <h3 className="text-xl font-bold text-white mb-1">Download PDF of your Estimates</h3>
-                            <p className="text-slate-300 text-sm md:text-base">Generate professional construction cost estimates instantly.</p>
+                        <div className="p-2.5 md:p-3 flex-1">
+                            <h3 className="text-sm md:text-base font-bold text-white">Download PDF of your Estimates</h3>
+                            <p className="text-slate-300 text-[10px] md:text-xs">Generate professional cost estimates instantly.</p>
                         </div>
                     </div>
 
                     {/* Card 3: Join Beta CTA */}
-                    <div className="group flex items-stretch bg-slate-800/90 hover:bg-slate-800 backdrop-blur-md rounded-xl overflow-hidden border border-white/10 shadow-2xl transition-all hover:scale-[1.01]">
-                        <div className="bg-blue-900/80 w-20 md:w-24 flex items-center justify-center shrink-0">
-                            <Award className="w-8 h-8 md:w-10 md:h-10 text-blue-100" strokeWidth={1.5} />
+                    <div className="group flex items-stretch bg-slate-800/90 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 shadow-lg">
+                        <div className="bg-blue-900/80 w-12 md:w-16 flex items-center justify-center shrink-0">
+                            <Award className="w-5 h-5 md:w-6 md:h-6 text-blue-100" strokeWidth={1.5} />
                         </div>
-                        <div className="p-4 md:p-5 flex-1 flex flex-col md:flex-row items-center justify-between gap-4">
-                            <div className="text-center md:text-left">
-                                <h3 className="text-xl font-bold text-white mb-1">Join BETA</h3>
-                                <p className="text-slate-300 text-sm md:text-base">Help us refine the experience.</p>
+                        <div className="p-2 md:p-3 flex-1 flex flex-row items-center justify-between gap-2 md:gap-4">
+                            <div className="text-left">
+                                <h3 className="text-sm md:text-base font-bold text-white">Join BETA</h3>
+                                <p className="text-slate-300 text-[10px] md:text-xs">Help us refine the experience.</p>
                             </div>
                             <Button
                                 onClick={handleJoin}
-                                size="lg"
-                                className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-6 rounded-lg text-lg shadow-lg hover:shadow-orange-600/20 transition-all w-full md:w-auto"
+                                size="sm"
+                                className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-4 md:px-6 py-1.5 md:py-2 rounded-md text-xs md:text-sm shadow-lg transition-all shrink-0"
                             >
                                 Join Now
                             </Button>
