@@ -10,11 +10,39 @@ import FeedbackPage from './pages/FeedbackPage';
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage } from './pages/AuthPages';
 import ProjectHeader from './components/ProjectHeader';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoadingScreen from './components/LoadingScreen';
 import { useInstallPrompt } from './hooks/useInstallPrompt';
 import { Download, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+
+// Custom Error Boundary Component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("App Crash Error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center bg-slate-900 text-white">
+          <h1 className="text-xl font-bold mb-2">Something went wrong</h1>
+          <p className="text-sm opacity-70 mb-4">{this.state.error?.message}</p>
+          <Button onClick={() => window.location.reload()} variant="outline" className="text-black">
+            Reload App
+          </Button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function AppContent() {
   const { currentPage, navigateTo } = useNavigation();
@@ -22,6 +50,8 @@ function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
   const { isInstallable, promptInstall } = useInstallPrompt();
+
+  console.log("App State:", { currentPage, authLoading, userHasSession: !!user, isLoading });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -137,13 +167,15 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <ProjectProvider>
-        <NavigationProvider>
-          <AppContent />
-        </NavigationProvider>
-      </ProjectProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ProjectProvider>
+          <NavigationProvider>
+            <AppContent />
+          </NavigationProvider>
+        </ProjectProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

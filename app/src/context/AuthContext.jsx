@@ -10,11 +10,16 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         // Check active session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setSession(session);
-            setUser(session?.user ?? null);
-            setLoading(false);
-        });
+        supabase.auth.getSession()
+            .then(({ data: { session } }) => {
+                setSession(session);
+                setUser(session?.user ?? null);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Auth initialization error:", err);
+                setLoading(false);
+            });
 
         // Listen for changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -59,7 +64,7 @@ export function AuthProvider({ children }) {
             resetPassword,
             updatePassword
         }}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 }
