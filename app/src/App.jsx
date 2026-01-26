@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 import LoadingScreen from './components/LoadingScreen';
 
 function AppContent() {
-  const { currentPage } = useNavigation();
+  const { currentPage, navigateTo } = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
 
