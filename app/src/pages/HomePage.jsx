@@ -1,18 +1,22 @@
 import React from 'react';
 import { useNavigation, PAGES } from '../context/NavigationContext';
 import { useInstallPrompt } from '../hooks/useInstallPrompt';
+import { useAuth } from '../context/AuthContext';
 import { HardHat, FileText, ShoppingCart, Sparkles } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
     const { navigateTo } = useNavigation();
     const { isInstallable, promptInstall } = useInstallPrompt();
+    const { user } = useAuth();
 
     const handleJoin = async () => {
         if (isInstallable) {
             await promptInstall();
-        } else {
+        } else if (user) {
             navigateTo(PAGES.PROJECTS);
+        } else {
+            navigateTo(PAGES.LOGIN);
         }
     };
 
@@ -97,7 +101,7 @@ export default function HomePage() {
                     size="lg"
                     className="w-full max-w-2xl mx-auto bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 md:py-4 rounded-lg text-base md:text-lg shadow-xl transition-all shrink-0"
                 >
-                    Join Now
+                    {user ? 'My Projects' : 'Sign In / Sign Up'}
                 </Button>
 
             </div>

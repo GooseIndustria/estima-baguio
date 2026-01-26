@@ -8,10 +8,15 @@ export const PAGES = {
     ESTIMATE: 'estimate',
     HOME: 'home',
     FEEDBACK: 'feedback',
+    LOGIN: 'login',
+    REGISTER: 'register',
+    FORGOT_PASSWORD: 'forgot-password',
+    RESET_PASSWORD: 'reset-password',
+    PROFILE: 'profile',
 };
 
 function getPageFromHash() {
-    const hash = window.location.hash.replace('#', '');
+    const hash = window.location.hash.split('?')[0].replace('#', '');
     return Object.values(PAGES).includes(hash) ? hash : PAGES.HOME;
 }
 

@@ -33,3 +33,38 @@ create policy "Enable read for authenticated users" on "public"."feedback"
 as PERMISSIVE for SELECT
 to authenticated
 using (true);
+
+-- PROJECTS TABLE
+create table public.projects (
+  id uuid not null default gen_random_uuid (),
+  created_at timestamp with time zone not null default now(),
+  updated_at timestamp with time zone not null default now(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  name text not null,
+  data jsonb null,
+  constraint projects_pkey primary key (id)
+);
+
+-- Enable RLS
+alter table public.projects enable row level security;
+
+-- Policies
+create policy "Users can view their own projects" on "public"."projects"
+as PERMISSIVE for SELECT
+to authenticated
+using (auth.uid() = user_id);
+
+create policy "Users can insert their own projects" on "public"."projects"
+as PERMISSIVE for INSERT
+to authenticated
+with check (auth.uid() = user_id);
+
+create policy "Users can update their own projects" on "public"."projects"
+as PERMISSIVE for UPDATE
+to authenticated
+using (auth.uid() = user_id);
+
+create policy "Users can delete their own projects" on "public"."projects"
+as PERMISSIVE for DELETE
+to authenticated
+using (auth.uid() = user_id);

@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useIndexedDB } from '../hooks/useIndexedDB';
+import { useAuth } from './AuthContext';
+import { supabase } from '../lib/supabase';
 
 // Initial state
 const initialState = {
@@ -112,7 +114,8 @@ const ProjectContext = createContext(null);
 // Provider component
 export function ProjectProvider({ children }) {
     const [state, dispatch] = useReducer(projectReducer, initialState);
-    const { isReady, saveProject, getProject, deleteProject, getLastProject } = useIndexedDB();
+    const { isReady, saveProject: saveLocal, getProject: getLocal, deleteProject: deleteLocal, getLastProject: getLastLocal } = useIndexedDB();
+    const { user } = useAuth(); // Get authenticated user
 
     // Debounce timer ref
     const saveTimeoutRef = useRef(null);
@@ -120,22 +123,51 @@ export function ProjectProvider({ children }) {
 
     // Load last project on startup
     useEffect(() => {
-        if (!isReady || hasLoadedInitialProject.current) return;
+        // If not ready (for local) and no user (for cloud), wait.
+        // But if user is logged in, we don't care about local DB ready state?
+        // Actually, let's prioritize user cloud data if logged in.
 
         async function loadLastProject() {
-            const lastProject = await getLastProject();
-            if (lastProject) {
-                dispatch({ type: LOAD_PROJECT, payload: lastProject });
+            if (hasLoadedInitialProject.current) return;
+
+            if (user) {
+                // Load from Cloud
+                const { data, error } = await supabase
+                    .from('projects')
+                    .select('*')
+                    .order('updated_at', { ascending: false })
+                    .limit(1)
+                    .single();
+
+                if (data) {
+                    const project = {
+                        id: data.id,
+                        name: data.name,
+                        lineItems: data.data?.lineItems || [],
+                        priceMode: data.data?.priceMode || 'typical',
+                        updatedAt: data.updated_at
+                    };
+                    dispatch({ type: LOAD_PROJECT, payload: project });
+                }
+                hasLoadedInitialProject.current = true;
+
+            } else if (isReady) {
+                // Load from Local
+                const lastProject = await getLastLocal();
+                if (lastProject) {
+                    dispatch({ type: LOAD_PROJECT, payload: lastProject });
+                }
+                hasLoadedInitialProject.current = true;
             }
-            hasLoadedInitialProject.current = true;
         }
 
         loadLastProject();
-    }, [isReady, getLastProject]);
+    }, [isReady, getLastLocal, user]);
 
     // Auto-save with debounce whenever state changes
     useEffect(() => {
-        if (!isReady || !hasLoadedInitialProject.current) return;
+        if (!hasLoadedInitialProject.current) return;
+        if (!user && !isReady) return;
 
         // Don't auto-save if no items and no project ID (empty new project)
         if (state.lineItems.length === 0 && !state.currentProjectId) return;
@@ -150,20 +182,68 @@ export function ProjectProvider({ children }) {
             dispatch({ type: SET_SAVING, payload: true });
 
             const projectData = {
-                id: state.currentProjectId,
+                id: state.currentProjectId, // Might be null for new project
                 name: state.currentProjectName,
                 lineItems: state.lineItems,
                 priceMode: state.priceMode,
             };
 
-            const saved = await saveProject(projectData);
+            let savedId = state.currentProjectId;
+            let savedAt = null;
 
-            if (saved) {
+            if (user) {
+                // Save to Cloud
+                const payload = {
+                    id: state.currentProjectId || undefined, // undefined lets Postgres generate UUID? No, Supabase/files usually need ID. 
+                    // Actually, if it's new, we don't send ID to let default gen_random_uuid work? 
+                    // Or we generate one. 
+                    // Let's rely on DB gen_random_uuid if ID is missing.
+                    // Upsert requires ID to match.
+                    user_id: user.id,
+                    name: state.currentProjectName,
+                    data: {
+                        lineItems: state.lineItems,
+                        priceMode: state.priceMode
+                    },
+                    updated_at: new Date().toISOString()
+                };
+
+                // If we have an ID, include it in payload to update
+                if (state.currentProjectId) {
+                    payload.id = state.currentProjectId;
+                }
+
+                // If using 'upsert' without ID, it will try to insert. 
+                // However, without a primary key collision, it's just an insert.
+                // We need to get the ID back.
+                const { data, error } = await supabase
+                    .from('projects')
+                    .upsert(payload)
+                    .select()
+                    .single();
+
+                if (data) {
+                    savedId = data.id;
+                    savedAt = data.updated_at;
+                } else {
+                    console.error("Save to Supabase failed", error);
+                }
+
+            } else {
+                // Save to Local
+                const saved = await saveLocal(projectData);
+                if (saved) {
+                    savedId = saved.id;
+                    savedAt = saved.updatedAt;
+                }
+            }
+
+            if (savedId) {
                 // If this was a new project, update the ID
                 if (!state.currentProjectId) {
-                    dispatch({ type: SET_PROJECT_ID, payload: saved.id });
+                    dispatch({ type: SET_PROJECT_ID, payload: savedId });
                 }
-                dispatch({ type: SET_LAST_SAVED, payload: saved.updatedAt });
+                dispatch({ type: SET_LAST_SAVED, payload: savedAt });
             }
 
             dispatch({ type: SET_SAVING, payload: false });
@@ -174,7 +254,7 @@ export function ProjectProvider({ children }) {
                 clearTimeout(saveTimeoutRef.current);
             }
         };
-    }, [isReady, state.lineItems, state.priceMode, state.currentProjectName, state.currentProjectId, saveProject]);
+    }, [isReady, state.lineItems, state.priceMode, state.currentProjectName, state.currentProjectId, saveLocal, user]);
 
     // Actions
     const addItem = useCallback((material, quantity = 1) => {
@@ -200,19 +280,39 @@ export function ProjectProvider({ children }) {
     const clearProject = useCallback(async () => {
         // If there's a current project, delete it from DB
         if (state.currentProjectId) {
-            await deleteProject(state.currentProjectId);
+            if (user) {
+                await supabase.from('projects').delete().eq('id', state.currentProjectId);
+            } else {
+                await deleteLocal(state.currentProjectId);
+            }
         }
         dispatch({ type: CLEAR_PROJECT });
-    }, [state.currentProjectId, deleteProject]);
+    }, [state.currentProjectId, deleteLocal, user]);
 
     const loadProject = useCallback(async (projectId) => {
-        const project = await getProject(projectId);
-        if (project) {
-            dispatch({ type: LOAD_PROJECT, payload: project });
-            return true;
+        if (user) {
+            const { data } = await supabase.from('projects').select('*').eq('id', projectId).single();
+            if (data) {
+                const project = {
+                    id: data.id,
+                    name: data.name,
+                    lineItems: data.data?.lineItems || [],
+                    priceMode: data.data?.priceMode || 'typical',
+                    updatedAt: data.updated_at
+                };
+                dispatch({ type: LOAD_PROJECT, payload: project });
+                return true;
+            }
+            return false;
+        } else {
+            const project = await getLocal(projectId);
+            if (project) {
+                dispatch({ type: LOAD_PROJECT, payload: project });
+                return true;
+            }
+            return false;
         }
-        return false;
-    }, [getProject]);
+    }, [getLocal, user]);
 
     const createNewProject = useCallback((name = 'New Project') => {
         dispatch({ type: CLEAR_PROJECT });

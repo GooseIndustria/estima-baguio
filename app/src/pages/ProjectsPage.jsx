@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigation } from '../context/NavigationContext';
 import { useProject } from '../context/ProjectContext';
-import { useIndexedDB } from '../hooks/useIndexedDB';
+import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 import { formatCurrency } from '../utils/calculations';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +20,8 @@ import { Plus, Trash2, Folder, Clock } from 'lucide-react';
 export function ProjectsPage() {
     const { navigateTo, PAGES } = useNavigation();
     const { loadProject, createNewProject } = useProject();
-    const { isReady, getAllProjects, deleteProject } = useIndexedDB();
+    const { user } = useAuth();
+    // const { isReady, getAllProjects, deleteProject } = useIndexedDB(); // Migrated to Supabase
 
     const [projects, setProjects] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,18 +31,47 @@ export function ProjectsPage() {
 
     // Load all projects
     useEffect(() => {
-        if (!isReady) return;
+        if (!user) return;
 
         async function fetchProjects() {
-            const allProjects = await getAllProjects();
-            setProjects(allProjects);
-            setIsLoading(false);
+            try {
+                const { data, error } = await supabase
+                    .from('projects')
+                    .select('*')
+                    .order('updated_at', { ascending: false });
+
+                if (error) throw error;
+
+                // Map Supabase structure to App structure
+                const mappedProjects = data.map(p => ({
+                    id: p.id,
+                    name: p.name,
+                    updatedAt: p.updated_at,
+                    lineItems: p.data?.lineItems || [],
+                    priceMode: p.data?.priceMode || 'typical'
+                }));
+
+                setProjects(mappedProjects);
+            } catch (err) {
+                console.error('Error fetching projects:', err);
+            } finally {
+                setIsLoading(false);
+            }
         }
 
         fetchProjects();
-    }, [isReady, getAllProjects]);
+    }, [user]);
 
     const handleProjectClick = async (projectId) => {
+        // We load the project logic via context (which we'll update next to support Supabase loading)
+        // For now, simpler to just pass the project data we already have? 
+        // No, best to stick to loadProject signature so context sets state.
+
+        // Let's pass the project object directly to loadProject to avoid a second fetch?
+        // Context loadProject expects an ID usually if using DB, or an object?
+        // Checking Context: `const project = await getProject(projectId);` 
+        // We need to update Context to fetch from Supabase too.
+
         const success = await loadProject(projectId);
         if (success) {
             navigateTo(PAGES.MATERIALS);
@@ -66,8 +97,14 @@ export function ProjectsPage() {
 
     const confirmDelete = async () => {
         if (deleteConfirmId) {
-            await deleteProject(deleteConfirmId);
-            setProjects(projects.filter(p => p.id !== deleteConfirmId));
+            // await deleteProject(deleteConfirmId);
+            const { error } = await supabase.from('projects').delete().eq('id', deleteConfirmId);
+
+            if (!error) {
+                setProjects(projects.filter(p => p.id !== deleteConfirmId));
+            } else {
+                console.error('Error deleting project:', error);
+            }
             setDeleteConfirmId(null);
         }
     };
