@@ -10,11 +10,15 @@ import ProjectHeader from './components/ProjectHeader';
 
 import { useState, useEffect } from 'react';
 import LoadingScreen from './components/LoadingScreen';
+import { useInstallPrompt } from './hooks/useInstallPrompt';
+import { Download } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 
 function AppContent() {
   const { currentPage, navigateTo } = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
+  const { isInstallable, promptInstall } = useInstallPrompt();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -46,15 +50,27 @@ function AppContent() {
               <span className="font-bold text-lg">ESTIMA</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground font-medium">Baguio City Prices</span>
-              {currentPage !== PAGES.FEEDBACK && (
-                <button
-                  onClick={() => navigateTo(PAGES.FEEDBACK)}
-                  className="text-xs text-blue-600 hover:underline font-medium"
-                >
-                  Feedback
-                </button>
-              )}
+              <span className="text-sm text-muted-foreground font-medium whitespace-nowrap hidden sm:inline">Baguio City Prices</span>
+              <div className="flex items-center gap-3">
+                {isInstallable && (
+                  <Button
+                    onClick={promptInstall}
+                    size="sm"
+                    className="h-8 gap-1.5 bg-blue-600 text-white hover:bg-blue-700 rounded-full font-bold shadow-sm border-none px-3"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    Install
+                  </Button>
+                )}
+                {currentPage !== PAGES.FEEDBACK && (
+                  <button
+                    onClick={() => navigateTo(PAGES.FEEDBACK)}
+                    className="text-xs text-blue-600 hover:underline font-medium px-1"
+                  >
+                    Feedback
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </header>

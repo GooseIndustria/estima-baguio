@@ -1,13 +1,15 @@
 import { useState, useCallback } from 'react';
 import { useProject } from '../context/ProjectContext';
 import { useNavigation } from '../context/NavigationContext';
+import { useInstallPrompt } from '../hooks/useInstallPrompt';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
     Pencil,
     Folder,
     CheckCircle2,
-    Loader2
+    Loader2,
+    Download
 } from 'lucide-react';
 
 export function ProjectHeader() {
@@ -19,6 +21,7 @@ export function ProjectHeader() {
         lineItems
     } = useProject();
     const { navigateTo, PAGES } = useNavigation();
+    const { isInstallable, promptInstall } = useInstallPrompt();
 
     const [isEditing, setIsEditing] = useState(false);
     const [editName, setEditName] = useState('');
@@ -65,53 +68,69 @@ export function ProjectHeader() {
     return (
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full px-4 gap-4 md:gap-0">
             <div className="flex items-center gap-4 flex-1 w-full md:w-auto justify-between md:justify-start">
-                {isEditing ? (
-                    <Input
-                        value={editName}
-                        onChange={(e) => setEditName(e.target.value)}
-                        onBlur={handleSave}
-                        onKeyDown={handleKeyDown}
-                        autoFocus
-                        className="max-w-[300px] h-9 font-medium"
-                    />
-                ) : (
+                <div className="flex items-center gap-2">
+                    {isEditing ? (
+                        <Input
+                            value={editName}
+                            onChange={(e) => setEditName(e.target.value)}
+                            onBlur={handleSave}
+                            onKeyDown={handleKeyDown}
+                            autoFocus
+                            className="max-w-[300px] h-9 font-medium"
+                        />
+                    ) : (
+                        <Button
+                            variant="ghost"
+                            onClick={handleStartEdit}
+                            title="Click to rename"
+                            className="pl-0 text-lg font-semibold h-auto hover:bg-transparent hover:text-primary gap-2"
+                        >
+                            {currentProjectName}
+                            <Pencil className="h-4 w-4 text-muted-foreground opacity-50" />
+                        </Button>
+                    )}
+
+                    {hasItems && (
+                        <div className="flex items-center text-xs text-muted-foreground gap-1.5 animate-in fade-in-0 duration-300">
+                            {isSaving ? (
+                                <>
+                                    <Loader2 className="h-3 w-3 animate-spin" />
+                                    <span>Saving...</span>
+                                </>
+                            ) : lastSavedAt ? (
+                                <>
+                                    <CheckCircle2 className="h-3 w-3 text-green-500" />
+                                    <span>Saved {formatSavedTime(lastSavedAt)}</span>
+                                </>
+                            ) : null}
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+                {isInstallable && (
                     <Button
-                        variant="ghost"
-                        onClick={handleStartEdit}
-                        title="Click to rename"
-                        className="pl-0 text-lg font-semibold h-auto hover:bg-transparent hover:text-primary gap-2"
+                        variant="secondary"
+                        size="sm"
+                        onClick={promptInstall}
+                        className="gap-2 bg-blue-600 text-white hover:bg-blue-700 font-bold border-none"
                     >
-                        {currentProjectName}
-                        <Pencil className="h-4 w-4 text-muted-foreground opacity-50" />
+                        <Download className="h-4 w-4" />
+                        <span>Install App</span>
                     </Button>
                 )}
 
-                {hasItems && (
-                    <div className="flex items-center text-xs text-muted-foreground gap-1.5 animate-in fade-in-0 duration-300">
-                        {isSaving ? (
-                            <>
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                                <span>Saving...</span>
-                            </>
-                        ) : lastSavedAt ? (
-                            <>
-                                <CheckCircle2 className="h-3 w-3 text-green-500" />
-                                <span>Saved {formatSavedTime(lastSavedAt)}</span>
-                            </>
-                        ) : null}
-                    </div>
-                )}
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => navigateTo(PAGES.PROJECTS)}
+                    className="gap-2 text-muted-foreground hover:text-foreground"
+                >
+                    <span>My Projects</span>
+                    <Folder className="h-4 w-4" />
+                </Button>
             </div>
-
-            <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigateTo(PAGES.PROJECTS)}
-                className="gap-2 text-muted-foreground hover:text-foreground"
-            >
-                <span>My Projects</span>
-                <Folder className="h-4 w-4" />
-            </Button>
         </div>
     );
 }
