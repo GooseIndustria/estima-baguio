@@ -7,6 +7,7 @@ export const PAGES = {
     MATERIALS: 'materials',
     ESTIMATE: 'estimate',
     HOME: 'home',
+    FEEDBACK: 'feedback',
 };
 
 function getPageFromHash() {

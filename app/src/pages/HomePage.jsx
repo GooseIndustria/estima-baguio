@@ -76,15 +76,18 @@ export default function HomePage() {
                     </div>
 
                     {/* Card 3: Beta Testing Info */}
-                    <div className="group flex items-stretch bg-slate-800/70 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 shadow-lg">
+                    <button
+                        onClick={() => navigateTo(PAGES.FEEDBACK)}
+                        className="w-full text-left group flex items-stretch bg-slate-800/70 backdrop-blur-md rounded-lg overflow-hidden border border-white/10 shadow-lg hover:bg-slate-700/80 transition-all active:scale-[0.98]"
+                    >
                         <div className="bg-blue-900/80 w-12 md:w-16 flex items-center justify-center shrink-0">
-                            <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-blue-100" strokeWidth={1.5} />
+                            <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-blue-100 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
                         </div>
                         <div className="p-2.5 md:p-3 flex-1 space-y-0">
                             <h3 className="text-sm md:text-base font-bold text-white mb-0">Beta Testing</h3>
                             <p className="text-slate-300 text-[10px] md:text-xs mt-0">Help us refine prices and improve the experience.</p>
                         </div>
-                    </div>
+                    </button>
 
                 </div>
 

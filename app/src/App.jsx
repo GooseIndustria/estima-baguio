@@ -5,6 +5,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import MaterialSelectionPage from './pages/MaterialSelectionPage';
 import EstimatePage from './pages/EstimatePage';
 import HomePage from './pages/HomePage';
+import FeedbackPage from './pages/FeedbackPage';
 import ProjectHeader from './components/ProjectHeader';
 
 import { useState, useEffect } from 'react';
@@ -44,7 +45,17 @@ function AppContent() {
               <img src="/favicon.svg" alt="Estima Logo" className="w-5 h-5" />
               <span className="font-bold text-lg">ESTIMA</span>
             </div>
-            <span className="text-sm text-muted-foreground font-medium">Baguio City Prices</span>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground font-medium">Baguio City Prices</span>
+              {currentPage !== PAGES.FEEDBACK && (
+                <button
+                  onClick={() => navigateTo(PAGES.FEEDBACK)}
+                  className="text-xs text-blue-600 hover:underline font-medium"
+                >
+                  Feedback
+                </button>
+              )}
+            </div>
           </div>
         </header>
       )}
@@ -55,6 +66,7 @@ function AppContent() {
         {currentPage === PAGES.PROJECTS && <ProjectsPage />}
         {currentPage === PAGES.MATERIALS && <MaterialSelectionPage />}
         {currentPage === PAGES.ESTIMATE && <EstimatePage />}
+        {currentPage === PAGES.FEEDBACK && <FeedbackPage />}
       </div>
 
       {currentPage !== PAGES.ESTIMATE && currentPage !== PAGES.HOME && (
