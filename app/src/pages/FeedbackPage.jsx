@@ -5,12 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, CheckCircle2, MessageSquare } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, MessageSquare, AlertCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function FeedbackPage() {
     const { navigateTo } = useNavigation();
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,14 +23,34 @@ export default function FeedbackPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
         if (!formData.message.trim()) return;
 
         setIsLoading(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log('Feedback submitted:', formData);
-        setIsLoading(false);
-        setIsSubmitted(true);
+
+        try {
+            const { error: supabaseError } = await supabase
+                .from('feedback')
+                .insert([
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        feedback_type: formData.type,
+                        message: formData.message,
+                        user_agent: navigator.userAgent
+                    }
+                ]);
+
+            if (supabaseError) throw supabaseError;
+
+            console.log('Feedback submitted successfully');
+            setIsSubmitted(true);
+        } catch (err) {
+            console.error('Error submitting feedback:', err);
+            setError('Failed to submit feedback. Please check your internet connection and try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (isSubmitted) {
