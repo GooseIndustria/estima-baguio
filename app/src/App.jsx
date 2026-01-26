@@ -7,8 +7,27 @@ import EstimatePage from './pages/EstimatePage';
 import HomePage from './pages/HomePage';
 import ProjectHeader from './components/ProjectHeader';
 
+import { useState, useEffect } from 'react';
+import LoadingScreen from './components/LoadingScreen';
+
 function AppContent() {
   const { currentPage } = useNavigation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLeaving, setIsLeaving] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLeaving(true);
+      setTimeout(() => setIsLoading(false), 800); // Wait for fade out
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) return (
+    <div className={`transition-opacity duration-700 ease-in-out ${isLeaving ? 'opacity-0' : 'opacity-100'}`}>
+      <LoadingScreen />
+    </div>
+  );
 
   const isInProject = currentPage === PAGES.MATERIALS || currentPage === PAGES.ESTIMATE;
 
