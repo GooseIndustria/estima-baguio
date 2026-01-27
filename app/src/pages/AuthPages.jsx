@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, Mail, Lock, User, ArrowLeft, LogOut } from 'lucide-react';
+import { Loader2, Mail, Lock, User, ArrowLeft, LogOut, Eye, EyeOff } from 'lucide-react';
 
 // Common Layout Component
 const AuthLayout = ({ title, subtitle, children, backAction }) => (
@@ -35,6 +35,7 @@ export function LoginPage() {
     const { navigateTo } = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -86,13 +87,24 @@ export function LoginPage() {
                         <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                         <Input
                             id="password"
-                            type="password"
-                            className="pl-9"
+                            type={showPassword ? "text" : "password"}
+                            className="pl-9 pr-10"
                             placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-slate-400 hover:text-slate-600 transition-colors"
+                        >
+                            {showPassword ? (
+                                <EyeOff className="h-4 w-4" />
+                            ) : (
+                                <Eye className="h-4 w-4" />
+                            )}
+                        </button>
                     </div>
                 </div>
                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
