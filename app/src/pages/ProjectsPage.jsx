@@ -200,12 +200,12 @@ export function ProjectsPage() {
 
             {/* New Project FAB */}
             <Button
-                className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg"
-                size="icon"
+                className="fixed bottom-6 right-6 shadow-lg gap-2 pl-4 pr-6 rounded-full"
+                size="lg"
                 onClick={handleNewProject}
             >
-                <Plus className="h-6 w-6" />
-                <span className="sr-only">New Project</span>
+                <Plus className="h-5 w-5" />
+                <span className="font-semibold">Add Project</span>
             </Button>
 
             {/* New Project Modal */}
