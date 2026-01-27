@@ -170,9 +170,16 @@ export function RegisterPage() {
         setLoading(true);
         setError(null);
         try {
-            const { error } = await signUp(email, password);
+            const { data, error } = await signUp(email, password);
             if (error) throw error;
-            setIsSuccess(true);
+
+            // If email confirmation is disabled, we get a session immediately
+            if (data?.session) {
+                navigateTo(PAGES.PROJECTS);
+            } else {
+                // Otherwise show the check inbox screen
+                setIsSuccess(true);
+            }
         } catch (err) {
             setError(err.message);
         } finally {
