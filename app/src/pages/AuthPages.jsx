@@ -111,6 +111,7 @@ export function LoginPage() {
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Sign In'}
                 </Button>
 
+                {/* Facebook Login - Disabled for now due to business verification requirements
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                         <span className="w-full border-t border-slate-200" />
@@ -130,6 +131,7 @@ export function LoginPage() {
                     <Facebook className="mr-2 h-4 w-4 text-[#1877F2]" />
                     Facebook
                 </Button>
+                */}
             </form>
             <div className="text-center text-sm space-y-2 text-slate-500">
                 <p>
@@ -282,6 +284,7 @@ export function RegisterPage() {
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Create Account'}
                 </Button>
 
+                {/* Facebook Login - Disabled for now due to business verification requirements
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                         <span className="w-full border-t border-slate-200" />
@@ -301,6 +304,7 @@ export function RegisterPage() {
                     <Facebook className="mr-2 h-4 w-4 text-[#1877F2]" />
                     Facebook
                 </Button>
+                */}
             </form>
             <div className="text-center text-sm text-slate-500">
                 Already have an account?{' '}
