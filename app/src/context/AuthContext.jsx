@@ -36,7 +36,13 @@ export function AuthProvider({ children }) {
     };
 
     const signUp = (email, password) => {
-        return supabase.auth.signUp({ email, password });
+        return supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                emailRedirectTo: window.location.origin
+            }
+        });
     };
 
     const signOut = () => {
