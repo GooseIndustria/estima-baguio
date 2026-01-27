@@ -45,6 +45,15 @@ export function AuthProvider({ children }) {
         });
     };
 
+    const signInWithFacebook = () => {
+        return supabase.auth.signInWithOAuth({
+            provider: 'facebook',
+            options: {
+                redirectTo: window.location.origin,
+            },
+        });
+    };
+
     const signOut = () => {
         return supabase.auth.signOut();
     };
@@ -68,7 +77,8 @@ export function AuthProvider({ children }) {
             signUp,
             signOut,
             resetPassword,
-            updatePassword
+            updatePassword,
+            signInWithFacebook
         }}>
             {children}
         </AuthContext.Provider>

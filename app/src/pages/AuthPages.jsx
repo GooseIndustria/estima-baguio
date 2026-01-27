@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, Mail, Lock, User, ArrowLeft, LogOut, Eye, EyeOff } from 'lucide-react';
+import { Loader2, Mail, Lock, User, ArrowLeft, LogOut, Eye, EyeOff, CheckCircle2, Facebook } from 'lucide-react';
 
 // Common Layout Component
 const AuthLayout = ({ title, subtitle, children, backAction }) => (
@@ -31,7 +31,7 @@ const AuthLayout = ({ title, subtitle, children, backAction }) => (
 );
 
 export function LoginPage() {
-    const { signIn } = useAuth();
+    const { signIn, signInWithFacebook } = useAuth();
     const { navigateTo } = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -110,6 +110,26 @@ export function LoginPage() {
                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Sign In'}
                 </Button>
+
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <span className="w-full border-t border-slate-200" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-white px-2 text-slate-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => signInWithFacebook()}
+                    disabled={loading}
+                >
+                    <Facebook className="mr-2 h-4 w-4 text-[#1877F2]" />
+                    Facebook
+                </Button>
             </form>
             <div className="text-center text-sm space-y-2 text-slate-500">
                 <p>
@@ -129,7 +149,7 @@ export function LoginPage() {
 }
 
 export function RegisterPage() {
-    const { signUp } = useAuth();
+    const { signUp, signInWithFacebook } = useAuth();
     const { navigateTo } = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -138,6 +158,7 @@ export function RegisterPage() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -149,14 +170,40 @@ export function RegisterPage() {
         try {
             const { error } = await signUp(email, password);
             if (error) throw error;
-            // Depending on Supabase settings, user might need to confirm email or is auto-logged in
-            navigateTo(PAGES.PROJECTS);
+            setIsSuccess(true);
         } catch (err) {
             setError(err.message);
         } finally {
             setLoading(false);
         }
     };
+
+    if (isSuccess) {
+        return (
+            <AuthLayout
+                title="Check your inbox"
+                subtitle="We've sent you a confirmation link"
+                backAction={() => navigateTo('login')}
+            >
+                <div className="flex flex-col items-center justify-center space-y-6 py-4">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                    </div>
+                    <div className="text-center space-y-2 text-slate-600">
+                        <p>We've sent an email to <span className="font-semibold text-slate-900">{email}</span>.</p>
+                        <p className="text-sm">Please click the link in that email to activate your account.</p>
+                    </div>
+                    <Button
+                        onClick={() => navigateTo('login')}
+                        variant="outline"
+                        className="w-full"
+                    >
+                        Back to Sign In
+                    </Button>
+                </div>
+            </AuthLayout>
+        );
+    }
 
     return (
         <AuthLayout
@@ -233,6 +280,26 @@ export function RegisterPage() {
                 </div>
                 <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={loading}>
                     {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Create Account'}
+                </Button>
+
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <span className="w-full border-t border-slate-200" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-white px-2 text-slate-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => signInWithFacebook()}
+                    disabled={loading}
+                >
+                    <Facebook className="mr-2 h-4 w-4 text-[#1877F2]" />
+                    Facebook
                 </Button>
             </form>
             <div className="text-center text-sm text-slate-500">
