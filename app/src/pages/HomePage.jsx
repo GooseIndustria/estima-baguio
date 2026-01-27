@@ -40,7 +40,7 @@ export default function HomePage() {
                         <span className="font-bold text-xl tracking-tight text-slate-900">ESTIMA</span>
                     </div>
 
-                    <h1 className="font-extrabold text-slate-900 tracking-tight leading-[1.1] whitespace-nowrap" style={{ fontSize: 'clamp(1.25rem, 7vw, 3rem)' }}>
+                    <h1 className="font-extrabold text-slate-900 tracking-tight leading-[1.1]" style={{ fontSize: 'clamp(1.25rem, 7vw, 3rem)' }}>
                         Professional Estimation Tool <br />
                         <span className="text-blue-700">
                             On Your Smartphone
