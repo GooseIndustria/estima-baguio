@@ -91,21 +91,25 @@ export default function HomePage() {
                         </div>
                     </button>
 
-                    {/* Install App Button - Visible only when installable */}
-                    {isInstallable && (
-                        <button
-                            onClick={promptInstall}
-                            className="w-full text-left group flex items-stretch bg-gradient-to-r from-blue-900/90 to-blue-800/90 backdrop-blur-md rounded-lg overflow-hidden border border-white/20 shadow-xl hover:scale-[1.02] transition-all"
-                        >
-                            <div className="bg-white/10 w-12 md:w-16 flex items-center justify-center shrink-0">
-                                <Download className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:animate-bounce" strokeWidth={2} />
-                            </div>
-                            <div className="p-2.5 md:p-3 flex-1 space-y-0">
-                                <h3 className="text-sm md:text-base font-bold text-white mb-0">Install App</h3>
-                                <p className="text-blue-100/80 text-[10px] md:text-xs mt-0">Add to your home screen for quick access.</p>
-                            </div>
-                        </button>
-                    )}
+                    {/* Install App Button - Always visible with fallback */}
+                    <button
+                        onClick={() => {
+                            if (isInstallable) {
+                                promptInstall();
+                            } else {
+                                alert("App installation is not available right now. You may have already installed the app, or your browser might not support automatic installation.");
+                            }
+                        }}
+                        className="w-full text-left group flex items-stretch bg-gradient-to-r from-blue-900/90 to-blue-800/90 backdrop-blur-md rounded-lg overflow-hidden border border-white/20 shadow-xl hover:scale-[1.02] transition-all"
+                    >
+                        <div className="bg-white/10 w-12 md:w-16 flex items-center justify-center shrink-0">
+                            <Download className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:animate-bounce" strokeWidth={2} />
+                        </div>
+                        <div className="p-2.5 md:p-3 flex-1 space-y-0">
+                            <h3 className="text-sm md:text-base font-bold text-white mb-0">Install App</h3>
+                            <p className="text-blue-100/80 text-[10px] md:text-xs mt-0">Add to your home screen for quick access.</p>
+                        </div>
+                    </button>
 
                 </div>
 

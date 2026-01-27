@@ -98,17 +98,6 @@ function AppContent() {
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground font-medium whitespace-nowrap hidden sm:inline">Baguio City Prices</span>
               <div className="flex items-center gap-2">
-                {isInstallable && (
-                  <Button
-                    onClick={promptInstall}
-                    size="sm"
-                    className="h-8 gap-1.5 bg-blue-600 text-white hover:bg-blue-700 rounded-full font-bold shadow-sm border-none px-3"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    Install
-                  </Button>
-                )}
-
                 {user ? (
                   <button
                     onClick={() => navigateTo(PAGES.PROFILE)}
