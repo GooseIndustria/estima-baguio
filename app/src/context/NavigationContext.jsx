@@ -13,6 +13,8 @@ export const PAGES = {
     FORGOT_PASSWORD: 'forgot-password',
     RESET_PASSWORD: 'reset-password',
     PROFILE: 'profile',
+    PRIVACY_POLICY: 'privacy-policy',
+    DATA_DELETION: 'data-deletion',
 };
 
 function getPageFromHash() {

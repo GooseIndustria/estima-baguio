@@ -8,6 +8,7 @@ import EstimatePage from './pages/EstimatePage';
 import HomePage from './pages/HomePage';
 import FeedbackPage from './pages/FeedbackPage';
 import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage } from './pages/AuthPages';
+import { PrivacyPolicyPage, DataDeletionPage } from './pages/LegalPages';
 import ProjectHeader from './components/ProjectHeader';
 
 import React, { useState, useEffect } from 'react';
@@ -133,6 +134,8 @@ function AppContent() {
         {currentPage === PAGES.FORGOT_PASSWORD && <ForgotPasswordPage />}
         {currentPage === PAGES.RESET_PASSWORD && <ResetPasswordPage />}
         {currentPage === PAGES.PROFILE && <ProfilePage />}
+        {currentPage === PAGES.PRIVACY_POLICY && <PrivacyPolicyPage />}
+        {currentPage === PAGES.DATA_DELETION && <DataDeletionPage />}
       </div>
 
       {currentPage !== PAGES.ESTIMATE && currentPage !== PAGES.HOME && !isAuthPage && (
